@@ -1,111 +1,60 @@
 import React, { useState } from 'react';
-import { CLIENT_CONFIG } from '../data/content';
-import { Menu, X, ArrowUpRight, Shield, Lock } from 'lucide-react';
+import { NAVIGATION } from '../data/content';
+import { Menu, X, ArrowUpRight } from 'lucide-react';
 
-export default function Navbar({ onOpenContact }) {
+export default function Navbar() {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
 
-  const navLinks = [
-    { label: "OVERVIEW", href: "#overview" },
-    { label: "PRACTICE VECTORS", href: "#vectors" },
-    { label: "METRICS", href: "#metrics" },
-    { label: "CAREER MANDATES", href: "#mandates" },
-    { label: "PUBLICATIONS", href: "#publications" },
-    { label: "AFFILIATIONS", href: "#affiliations" },
-    { label: "CONTACT", href: "#inquiry" },
-  ];
-
   return (
-    <header className="sticky top-0 z-50 bg-[#F8F8F6] border-b border-[#E5E4DF] shadow-xs">
-      
-      {/* Top Utility Micro-Bar (Elena Vance style) */}
-      <div className="hidden lg:block bg-[#F0EFEA] border-b border-[#E5E4DF] py-1.5 px-4 sm:px-6 lg:px-8 text-[11px] font-mono text-neutral-600">
-        <div className="max-w-7xl mx-auto flex items-center justify-between">
-          <div className="flex items-center gap-4">
-            <span className="text-[#A3702C] font-semibold">
-              [ 01/ EXECUTIVE MANDATE & DOMICILE ]
-            </span>
-            <span>·</span>
-            <span>HYDERABAD & CHENNAI, INDIA</span>
-            <span>·</span>
-            <a href={`tel:${CLIENT_CONFIG.phone.replace(/\s+/g, '')}`} className="hover:text-[#A3702C] transition-colors">
-              {CLIENT_CONFIG.phone}
-            </a>
-            <span>·</span>
-            <a href={`mailto:${CLIENT_CONFIG.primaryEmail}`} className="hover:text-[#A3702C] transition-colors">
-              {CLIENT_CONFIG.primaryEmail}
-            </a>
-          </div>
-
-          <div className="flex items-center gap-3">
-            <span className="inline-flex items-center gap-1.5 text-neutral-500">
-              <Shield className="w-3 h-3 text-[#A3702C]" />
-              FIDUCIARY ETHICS: PEOPLE'S PERSON
-            </span>
-            <span className="px-2 py-0.5 bg-[#0D1322] text-white text-[10px] uppercase font-bold tracking-wider">
-              ACTIVE
-            </span>
-          </div>
-        </div>
-      </div>
-
-      {/* Main Navigation Bar */}
+    <nav className="sticky top-0 z-50 bg-[#0F1F3D] shadow-md border-b border-[#0F1F3D]/80">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex items-center justify-between h-20">
           
-          {/* Logo with Monogram Box */}
-          <a href="#overview" className="flex items-center gap-3.5 group">
-            <div className="w-10 h-10 bg-[#0D1322] text-[#F8F8F6] font-serif font-bold text-lg flex items-center justify-center border border-[#A3702C] shadow-sm group-hover:bg-[#A3702C] transition-colors">
-              RC
-            </div>
-            <div className="flex flex-col">
-              <span className="font-serif text-xl font-bold tracking-tight text-[#0D1322] uppercase group-hover:text-[#A3702C] transition-colors">
-                Ravindranaath C
-              </span>
-              <span className="text-[10px] font-mono tracking-widest uppercase text-[#A3702C] -mt-0.5">
-                Insurance, Risk & Security Advisory
-              </span>
-            </div>
+          {/* Logo at left: "Ravindranaath" in white Playfair Display, "C" in gold */}
+          <a href="#" className="flex items-baseline group">
+            <span className="font-serif text-2xl sm:text-3xl font-bold tracking-tight text-white">
+              Ravindranaath
+            </span>
+            <span className="font-serif text-2xl sm:text-3xl font-bold tracking-tight text-[#C9A24B] ml-1.5">
+              C
+            </span>
           </a>
 
-          {/* Desktop Links */}
-          <nav className="hidden xl:flex items-center gap-7 text-xs font-mono tracking-wider uppercase text-neutral-700">
-            {navLinks.map((link) => (
-              <a
-                key={link.label}
-                href={link.href}
-                className="hover:text-[#A3702C] transition-colors py-1 relative after:absolute after:bottom-0 after:left-0 after:w-0 after:h-[1.5px] after:bg-[#A3702C] hover:after:w-full after:transition-all after:duration-200"
-              >
-                {link.label}
-              </a>
-            ))}
-          </nav>
+          {/* Links at right in light text (#E8ECF4), turning gold on hover (desktop/tablet >= 800px) */}
+          <div className="hidden min-[800px]:flex items-center gap-8">
+            <div className="flex items-center gap-7">
+              {NAVIGATION.links.map((link) => (
+                <a
+                  key={link.label}
+                  href={link.href}
+                  className="text-sm font-medium text-[#E8ECF4] hover:text-[#C9A24B] transition-colors"
+                >
+                  {link.label}
+                </a>
+              ))}
+            </div>
 
-          {/* Action Button */}
-          <div className="hidden sm:flex items-center gap-3">
+            {/* Gold pill button: "Contact Me" */}
             <a
-              href="#inquiry"
-              onClick={onOpenContact}
-              className="inline-flex items-center gap-2 px-5 py-2.5 bg-[#0D1322] hover:bg-[#162038] text-white text-xs font-mono font-semibold uppercase tracking-wider transition-all shadow hover:shadow-md cursor-pointer border border-[#0D1322]"
+              href="#contact"
+              className="inline-flex items-center justify-center px-6 py-2.5 rounded-full text-sm font-semibold tracking-wide bg-[#C9A24B] text-[#0F1F3D] hover:bg-[#E0C070] shadow-sm transition-all duration-200 transform hover:-translate-y-0.5"
             >
-              <Lock className="w-3.5 h-3.5 text-[#A3702C]" />
-              <span>Confidential Inquiry</span>
-              <ArrowUpRight className="w-3.5 h-3.5 text-[#A3702C]" />
+              {NAVIGATION.ctaButton}
             </a>
           </div>
 
-          {/* Mobile Menu Button */}
-          <div className="flex items-center gap-2 xl:hidden">
+          {/* Mobile hamburger menu button (< 800px) */}
+          <div className="flex min-[800px]:hidden items-center gap-3">
             <a
-              href="#inquiry"
-              className="sm:hidden px-3 py-1.5 bg-[#0D1322] text-white text-xs font-mono uppercase font-semibold"
+              href="#contact"
+              className="px-4 py-1.5 rounded-full text-xs font-semibold bg-[#C9A24B] text-[#0F1F3D]"
             >
-              Inquiry
+              Contact
             </a>
             <button
               type="button"
               onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-              className="p-2 border border-[#E5E4DF] text-neutral-700 hover:text-[#0D1322] hover:bg-[#F0EFEA]"
+              className="p-2 rounded-lg text-[#E8ECF4] hover:text-[#C9A24B] hover:bg-[#182E56] focus:outline-none"
               aria-label="Toggle navigation menu"
             >
               {mobileMenuOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
@@ -115,34 +64,33 @@ export default function Navbar({ onOpenContact }) {
         </div>
       </div>
 
-      {/* Mobile Drawer */}
+      {/* Mobile Menu with the same deep navy background (#0F1F3D) */}
       {mobileMenuOpen && (
-        <div className="xl:hidden bg-[#FFFFFF] border-b border-[#E5E4DF] px-6 py-5 space-y-3 font-mono text-xs">
+        <div className="min-[800px]:hidden bg-[#0F1F3D] border-t border-slate-700/50 px-6 pt-3 pb-6 space-y-3">
           <div className="flex flex-col space-y-2">
-            {navLinks.map((link) => (
+            {NAVIGATION.links.map((link) => (
               <a
                 key={link.label}
                 href={link.href}
                 onClick={() => setMobileMenuOpen(false)}
-                className="py-2 px-3 border-b border-neutral-100 text-neutral-800 hover:text-[#A3702C] hover:bg-[#F8F8F6]"
+                className="text-base font-medium text-[#E8ECF4] hover:text-[#C9A24B] py-2 px-3 rounded-md transition-colors"
               >
                 {link.label}
               </a>
             ))}
-            <div className="pt-3">
+            <div className="pt-2">
               <a
-                href="#inquiry"
+                href="#contact"
                 onClick={() => setMobileMenuOpen(false)}
-                className="w-full flex items-center justify-center gap-2 py-3 bg-[#0D1322] text-white text-xs uppercase font-semibold"
+                className="w-full inline-flex items-center justify-center gap-2 px-6 py-3 rounded-full text-sm font-semibold bg-[#C9A24B] text-[#0F1F3D]"
               >
-                <span>Initiate Confidential Inquiry</span>
-                <ArrowUpRight className="w-4 h-4 text-[#A3702C]" />
+                <span>{NAVIGATION.ctaButton}</span>
+                <ArrowUpRight className="w-4 h-4" />
               </a>
             </div>
           </div>
         </div>
       )}
-
-    </header>
+    </nav>
   );
 }

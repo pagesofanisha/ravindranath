@@ -1,6 +1,6 @@
 import React from 'react';
-import { CLIENT_CONFIG } from '../data/content';
-import { ArrowUp } from 'lucide-react';
+import { CLIENT_CONFIG, NAVIGATION } from '../data/content';
+import { Phone, Mail, ArrowUp } from 'lucide-react';
 
 export default function Footer() {
   const scrollToTop = () => {
@@ -8,55 +8,92 @@ export default function Footer() {
   };
 
   return (
-    <footer className="bg-[#FFFFFF] text-neutral-600 border-t border-[#E5E4DF] py-14">
+    <footer className="bg-[#0A1529] text-slate-300 border-t border-[#C9A24B]/30 pt-16 pb-12">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         
-        {/* Top Footer Row */}
-        <div className="flex flex-col lg:flex-row lg:items-center justify-between gap-8 pb-10 border-b border-[#F0EFEA]">
+        {/* Top Grid */}
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-12 gap-10 pb-12 border-b border-slate-800">
           
-          <div className="space-y-2">
-            <div className="flex items-center gap-3">
-              <div className="w-8 h-8 bg-[#0D1322] text-white font-serif font-bold text-sm flex items-center justify-center border border-[#A3702C]">
-                RC
-              </div>
-              <span className="font-serif text-lg font-bold text-[#0D1322] uppercase tracking-wide">
-                Ravindranaath C · Insurance &amp; Security Advisory
+          {/* Logo & Tagline (5 cols) */}
+          <div className="lg:col-span-5 space-y-3">
+            <div className="flex items-baseline">
+              <span className="font-serif text-2xl font-bold tracking-tight text-white">
+                Ravindranaath
+              </span>
+              <span className="font-serif text-2xl font-bold tracking-tight text-[#C9A24B] ml-1">
+                C
               </span>
             </div>
-            <p className="text-xs font-mono text-neutral-500 max-w-lg">
-              Senior Insurance Coordinator, Loss Prevention Specialist, and CEO &amp; MD of SLR-Industrial Security &amp; Facility Services. Serving corporations, institutions, and claimants across India.
+
+            <p className="font-serif italic text-lg text-[#C9A24B]">
+              “{CLIENT_CONFIG.tagline}”
+            </p>
+
+            <p className="text-xs text-slate-400 font-sans max-w-sm">
+              CEO &amp; MD, SLR-Industrial Security &amp; Facility Services. Senior insurance, loss prevention, and risk management leadership.
             </p>
           </div>
 
-          <div className="flex flex-wrap items-center gap-6 text-xs font-mono uppercase tracking-wider text-neutral-700">
-            <a href="#overview" className="hover:text-[#A3702C] transition-colors">Overview</a>
-            <a href="#vectors" className="hover:text-[#A3702C] transition-colors">Practice Vectors</a>
-            <a href="#metrics" className="hover:text-[#A3702C] transition-colors">Metrics</a>
-            <a href="#mandates" className="hover:text-[#A3702C] transition-colors">Mandates</a>
-            <a href="#publications" className="hover:text-[#A3702C] transition-colors">Publications</a>
-            <a href="#inquiry" className="hover:text-[#A3702C] transition-colors">Inquiry</a>
+          {/* Quick Links (3 cols) */}
+          <div className="lg:col-span-3 space-y-3">
+            <h4 className="text-xs font-bold uppercase tracking-wider text-white">
+              Quick Links
+            </h4>
+            <ul className="space-y-2 text-xs font-sans">
+              {NAVIGATION.links.map((link) => (
+                <li key={link.label}>
+                  <a
+                    href={link.href}
+                    className="text-slate-300 hover:text-[#C9A24B] transition-colors"
+                  >
+                    {link.label}
+                  </a>
+                </li>
+              ))}
+            </ul>
+          </div>
+
+          {/* Contact (4 cols) */}
+          <div className="lg:col-span-4 space-y-3">
+            <h4 className="text-xs font-bold uppercase tracking-wider text-white">
+              Direct Contact
+            </h4>
+            <ul className="space-y-2.5 text-xs font-sans">
+              <li className="flex items-center gap-2">
+                <Phone className="w-4 h-4 text-[#C9A24B] shrink-0" />
+                <a
+                  href={`tel:${CLIENT_CONFIG.phone.replace(/\s+/g, '')}`}
+                  className="hover:text-[#C9A24B] transition-colors"
+                >
+                  {CLIENT_CONFIG.phone}
+                </a>
+              </li>
+              <li className="flex items-center gap-2">
+                <Mail className="w-4 h-4 text-[#C9A24B] shrink-0" />
+                <a
+                  href={`mailto:${CLIENT_CONFIG.primaryEmail}`}
+                  className="hover:text-[#C9A24B] transition-colors"
+                >
+                  {CLIENT_CONFIG.primaryEmail}
+                </a>
+              </li>
+            </ul>
           </div>
 
         </div>
 
-        {/* Bottom Legal Bar */}
-        <div className="pt-8 flex flex-col sm:flex-row items-center justify-between gap-4 text-[11px] font-mono text-neutral-400">
-          <div>
-            <p>© 2026 Ravindranaath C. All rights reserved.</p>
-          </div>
+        {/* Bottom Bar */}
+        <div className="pt-8 flex flex-col sm:flex-row items-center justify-between gap-4 text-xs text-slate-400">
+          <p>© 2026 Ravindranaath C. All rights reserved.</p>
 
-          <div className="flex items-center gap-6">
-            <span>CONFIDENTIAL FIDUCIARY ADVISORY</span>
-            <span>·</span>
-            <span>VERIFIED RECORD AUDIT</span>
-            <button
-              type="button"
-              onClick={scrollToTop}
-              className="inline-flex items-center gap-1 text-[#0D1322] hover:text-[#A3702C] transition-colors ml-2 cursor-pointer font-semibold"
-            >
-              <span>TOP ↑</span>
-            </button>
-          </div>
+          <button
+            type="button"
+            onClick={scrollToTop}
+            className="inline-flex items-center gap-1.5 text-xs text-slate-300 hover:text-[#C9A24B] transition-colors cursor-pointer"
+          >
+            <span>Back to Top</span>
+            <ArrowUp className="w-3.5 h-3.5" />
+          </button>
         </div>
 
       </div>

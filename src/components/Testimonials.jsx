@@ -1,98 +1,52 @@
 import React from 'react';
-import { TESTIMONIALS_SECTION, ACHIEVEMENTS_SECTION } from '../data/content';
-import { Quote, Award, Calendar } from 'lucide-react';
+import { TESTIMONIALS_SECTION } from '../data/content';
+import { Quote } from 'lucide-react';
 
 export default function Testimonials() {
   return (
-    <section className="py-20 lg:py-24 bg-[#F8F8F6] border-b border-[#E5E4DF]">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-16">
+    <section className="py-20 lg:py-24 bg-[#FAF7F0] text-[#1E2433]">
+      <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
         
-        {/* Section Header */}
-        <div className="flex flex-col md:flex-row md:items-end justify-between pb-10 border-b border-[#E5E4DF] gap-4">
-          <div>
-            <span className="text-[11px] font-mono uppercase tracking-widest text-[#A3702C] font-semibold block mb-2">
-              [ FIDUCIARY TESTIMONIALS &amp; RECOGNITION ]
-            </span>
-            <h2 className="text-3xl sm:text-4xl font-serif font-normal text-[#0D1322] tracking-tight">
-              Executive Endorsements &amp; Honors
-            </h2>
-          </div>
-
-          <span className="text-xs font-mono text-neutral-500 uppercase tracking-wider">
-            VERBATIM CORPORATE TESTIMONY · L&amp;T LEADERSHIP
-          </span>
+        {/* Header */}
+        <div className="text-center max-w-3xl mx-auto mb-16 space-y-3">
+          <p className="text-xs font-semibold tracking-widest uppercase text-[#C9A24B]">
+            {TESTIMONIALS_SECTION.eyebrow}
+          </p>
+          <h2 className="text-3xl sm:text-4xl md:text-5xl font-serif font-bold text-[#0F1F3D] tracking-tight">
+            {TESTIMONIALS_SECTION.title}
+          </h2>
+          <div className="w-16 h-0.5 bg-[#C9A24B] mx-auto my-3" />
         </div>
 
-        {/* Two Testimonial Cards */}
+        {/* Two White Cards on Cream */}
         <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
           {TESTIMONIALS_SECTION.testimonials.map((item, idx) => (
             <div
               key={idx}
-              className="bg-white border border-[#E5E4DF] p-8 sm:p-10 flex flex-col justify-between shadow-xs hover:border-[#A3702C] transition-colors"
+              className="bg-white rounded-2xl p-8 sm:p-10 border border-slate-200/90 shadow-md hover:shadow-xl transition-all duration-300 flex flex-col justify-between"
             >
               <div>
-                <Quote className="w-8 h-8 text-[#A3702C] stroke-[1] mb-6" />
-                <blockquote className="font-serif italic text-2xl sm:text-3xl text-[#0D1322] leading-snug mb-8">
-                  "{item.quote}"
+                <Quote className="w-8 h-8 text-[#C9A24B] mb-5 fill-current opacity-80" />
+                <blockquote className="font-serif italic text-xl sm:text-2xl text-[#0F1F3D] leading-snug mb-6">
+                  “{item.quote}”
                 </blockquote>
               </div>
 
-              <div className="pt-6 border-t border-[#F0EFEA] flex items-center justify-between">
+              <div className="pt-6 border-t border-slate-100 flex items-center gap-3">
+                <div className="w-10 h-10 rounded-full bg-[#0F1F3D] text-[#C9A24B] font-serif font-bold flex items-center justify-center text-xs">
+                  {item.author.split(' ').map(n => n[0]).join('')}
+                </div>
                 <div>
-                  <h4 className="font-serif font-bold text-lg text-[#0D1322]">
+                  <h4 className="font-serif font-bold text-base text-[#0F1F3D]">
                     {item.author}
                   </h4>
-                  <p className="text-xs font-mono text-[#A3702C] uppercase tracking-wider">
-                    {item.designation} · {item.organization}
+                  <p className="text-xs font-semibold text-[#C9A24B]">
+                    {item.title}
                   </p>
                 </div>
-                <span className="text-[10px] font-mono text-neutral-400 uppercase tracking-widest border border-[#E5E4DF] px-2.5 py-1">
-                  ENDORSED
-                </span>
               </div>
             </div>
           ))}
-        </div>
-
-        {/* Dignitaries Interfaced Strip */}
-        <div className="bg-white border border-[#E5E4DF] p-8">
-          <div className="flex flex-col lg:flex-row lg:items-center justify-between gap-6 pb-6 border-b border-[#F0EFEA]">
-            <div>
-              <span className="text-[10px] font-mono uppercase tracking-widest text-[#A3702C] font-semibold block mb-1">
-                EXECUTIVE INTERFACE RECORD
-              </span>
-              <h3 className="font-serif text-xl font-bold text-[#0D1322]">
-                High-Level Engagements &amp; Dignitary Interface
-              </h3>
-            </div>
-            <p className="text-xs font-mono text-neutral-500">
-              Documented interactions across national leadership, state governors &amp; public figures
-            </p>
-          </div>
-
-          <div className="flex flex-wrap gap-2 pt-6">
-            {ACHIEVEMENTS_SECTION.dignitariesMet.names.map((name, idx) => (
-              <span
-                key={idx}
-                className="px-3.5 py-1.5 bg-[#F8F8F6] border border-[#E5E4DF] text-xs font-mono text-neutral-800"
-              >
-                {name}
-              </span>
-            ))}
-          </div>
-
-          {/* Chief Guest Highlights */}
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-4 pt-6 mt-6 border-t border-[#F0EFEA]">
-            {ACHIEVEMENTS_SECTION.chiefGuestHonors.map((h, idx) => (
-              <div key={idx} className="flex items-center gap-3 text-xs font-mono text-neutral-700">
-                <Calendar className="w-4 h-4 text-[#A3702C] shrink-0" />
-                <div>
-                  <span className="font-semibold text-[#0D1322]">Chief Guest: </span>
-                  <span>{h.institution} ({h.occasion}, {h.date})</span>
-                </div>
-              </div>
-            ))}
-          </div>
         </div>
 
       </div>

@@ -1,117 +1,120 @@
 import React from 'react';
-import { CLIENT_CONFIG } from '../data/content';
-import PhotoPlaceholder from './PhotoPlaceholder';
-import { ArrowUpRight, ArrowDown, Check, Shield } from 'lucide-react';
+import { HERO_SECTION } from '../data/content';
+import { ArrowRight, Award, Shield } from 'lucide-react';
 
-export default function Hero({ onOpenConsultation }) {
-  const capabilities = [
-    "MOTOR & VEHICLE CLAIMS",
-    "HEALTH & EMPLOYEE BENEFITS",
-    "LOSS PREVENTION & COMPENSATION",
-    "INDUSTRIAL SECURITY & MANPOWER",
-  ];
-
+export default function Hero() {
   return (
-    <section id="overview" className="relative pt-12 pb-20 md:py-20 lg:py-24 bg-[#F8F8F6] border-b border-[#E5E4DF]">
+    <section className="relative py-16 md:py-24 lg:py-28 bg-gradient-to-b from-[#FAF7F0] via-[#FAF7F0] to-[#F5EFE0] overflow-hidden">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-14 items-start">
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-14 items-center">
           
-          {/* Left Column: Editorial Headline, Narrative, and Mandate CTAs */}
-          <div className="lg:col-span-7 space-y-6">
+          {/* Left Column: Text & Buttons */}
+          <div className="lg:col-span-7 space-y-6 text-left">
             
-            {/* Top Micro-Tag */}
-            <div className="flex flex-wrap items-center gap-2 text-xs font-mono tracking-wider uppercase text-[#A3702C]">
-              <span className="font-semibold">[ 01/ EXECUTIVE MANDATE & DOMICILE ]</span>
-              <span className="text-neutral-400">·</span>
-              <span className="text-neutral-600">[ RISK / LOSS / GOVERNANCE ]</span>
+            {/* Eyebrow */}
+            <div className="inline-flex items-center gap-2">
+              <span className="w-6 h-0.5 bg-[#C9A24B]" />
+              <span className="text-xs sm:text-sm font-semibold tracking-wider uppercase text-[#C9A24B]">
+                {HERO_SECTION.eyebrow}
+              </span>
             </div>
 
-            {/* Massive Editorial Serif Headline */}
-            <h1 className="text-4xl sm:text-5xl md:text-6xl xl:text-7xl font-serif font-normal text-[#0D1322] leading-[1.08] tracking-tight">
-              All The Way – With You at the{' '}
-              <span className="font-serif italic font-normal text-[#A3702C] decoration-1">
-                threshold
-              </span>{' '}
-              of enterprise scale &amp; risk stewardship.
+            {/* Headline */}
+            <h1 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-serif font-bold tracking-tight text-[#0F1F3D] leading-[1.12]">
+              <span className="block">{HERO_SECTION.headlineLine1}</span>
+              <span className="block font-serif italic text-[#C9A24B] font-normal mt-1 sm:mt-2">
+                {HERO_SECTION.headlineLine2}
+              </span>
             </h1>
 
             {/* Subtext */}
-            <p className="text-base sm:text-lg text-neutral-700 font-sans leading-relaxed max-w-2xl font-light">
-              Independent insurance coordinator, loss prevention specialist, and executive leadership for institutional employees, corporate employers, and infrastructure conglomerates navigating claims disputes, third-party liability, and industrial safety operations with over {CLIENT_CONFIG.yearsOfExperience} years of documented service.
+            <p className="text-base sm:text-lg text-[#1E2433]/85 font-sans leading-relaxed max-w-2xl">
+              {HERO_SECTION.subtext}
             </p>
 
-            {/* Practice Capabilities Pills (Matching Elena Vance screenshot) */}
-            <div className="pt-2">
-              <span className="text-[11px] font-mono uppercase tracking-widest text-neutral-400 block mb-2.5">
-                DISCIPLINARY FOCUS &amp; PRACTICE VECTORS:
-              </span>
-              <div className="grid grid-cols-1 sm:grid-cols-2 gap-2 text-xs font-mono text-neutral-800">
-                {capabilities.map((cap, idx) => (
-                  <div key={idx} className="flex items-center gap-2 py-1.5 px-2.5 bg-white border border-[#E5E4DF]">
-                    <span className="w-3.5 h-3.5 bg-[#A3702C]/15 text-[#A3702C] flex items-center justify-center shrink-0">
-                      <Check className="w-2.5 h-2.5 stroke-[3]" />
-                    </span>
-                    <span className="tracking-wide text-[11px]">{cap}</span>
-                  </div>
-                ))}
+            {/* Buttons: Navy Pill Primary & Ghost Pill Secondary */}
+            <div className="flex flex-col sm:flex-row items-stretch sm:items-center gap-4 pt-4">
+              <a
+                href="#contact"
+                className="inline-flex items-center justify-center gap-2 px-8 py-4 rounded-full text-sm sm:text-base font-semibold bg-[#0F1F3D] text-white hover:bg-[#182E56] shadow-md hover:shadow-lg transition-all duration-200 transform hover:-translate-y-0.5 cursor-pointer"
+              >
+                <span>{HERO_SECTION.primaryCta}</span>
+                <ArrowRight className="w-4 h-4 text-[#C9A24B]" />
+              </a>
+
+              <a
+                href="#about"
+                className="inline-flex items-center justify-center gap-2 px-8 py-4 rounded-full text-sm sm:text-base font-semibold bg-transparent text-[#0F1F3D] border-2 border-[#0F1F3D] hover:bg-[#0F1F3D] hover:text-white transition-all duration-200"
+              >
+                <span>{HERO_SECTION.secondaryCta}</span>
+              </a>
+            </div>
+
+            {/* Credibility highlights */}
+            <div className="pt-6 border-t border-[#0F1F3D]/10 grid grid-cols-3 gap-4 max-w-lg">
+              <div>
+                <p className="text-2xl font-serif font-bold text-[#0F1F3D]">37+ Yrs</p>
+                <p className="text-xs text-[#6B7280]">Total Career Record</p>
+              </div>
+              <div>
+                <p className="text-2xl font-serif font-bold text-[#0F1F3D]">35,000+</p>
+                <p className="text-xs text-[#6B7280]">Employees Managed</p>
+              </div>
+              <div>
+                <p className="text-2xl font-serif font-bold text-[#0F1F3D]">No. 1</p>
+                <p className="text-xs text-[#6B7280]">Branch Manager (44 Br.)</p>
               </div>
             </div>
 
-            {/* Two Action Buttons (Elena Vance Style) */}
-            <div className="flex flex-col sm:flex-row items-stretch sm:items-center gap-3.5 pt-4">
-              <a
-                href="#inquiry"
-                onClick={onOpenConsultation}
-                className="inline-flex items-center justify-between sm:justify-center gap-3 px-7 py-4 bg-[#0D1322] hover:bg-[#162038] text-white text-xs font-mono uppercase font-semibold tracking-wider transition-all shadow-md group cursor-pointer border border-[#0D1322]"
-              >
-                <span>INITIATE CLIENT MANDATE / INQUIRY</span>
-                <ArrowUpRight className="w-4 h-4 text-[#A3702C] group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform" />
-              </a>
-
-              <a
-                href="#mandates"
-                className="inline-flex items-center justify-between sm:justify-center gap-3 px-6 py-4 bg-white hover:bg-[#F0EFEA] text-neutral-800 text-xs font-mono uppercase font-medium tracking-wider border border-[#D5D3CB] transition-colors"
-              >
-                <span>02 / VIEW CAREER RECORD &amp; DOSSIER</span>
-                <ArrowDown className="w-3.5 h-3.5 text-neutral-500" />
-              </a>
-            </div>
-
-            {/* Footnote Micro Strip */}
-            <div className="pt-3 text-[11px] font-mono text-neutral-500 flex flex-wrap items-center gap-4">
-              <span className="inline-flex items-center gap-1.5">
-                <span className="w-1.5 h-1.5 rounded-full bg-[#A3702C]" />
-                Over {CLIENT_CONFIG.yearsOfExperience} Years Documented Experience
-              </span>
-              <span className="inline-flex items-center gap-1.5">
-                <span className="w-1.5 h-1.5 rounded-full bg-[#A3702C]" />
-                Available for Corporate Yearly Retainers
-              </span>
-            </div>
-
           </div>
 
-          {/* Right Column: Elena Vance Style Executive Portrait Card */}
-          <div className="lg:col-span-5 w-full">
-            <PhotoPlaceholder
-              label="[PHOTO: Ravindranaath C – professional portrait]"
-              caption="CEO & MD, SLR-Industrial Security & Facility Services | Former Service Delivery Leader, L&T"
-              aspectRatio="aspect-[4/5]"
-              badgeText="ACTIVE ADVISORY"
-              principalName="RAVINDRANAATH C"
-              principalTitle="CEO & MD, SLR-Industrial Security & Facility Services"
-              metadata={[
-                { label: "JURISDICTION", value: "HYDERABAD & CHENNAI" },
-                { label: "MANAGED SCALE", value: "35,000+ EMPLOYEES" },
-                { label: "STATUS", value: "ACTIVE" },
-              ]}
-              className="w-full"
-            />
+          {/* Right Column: Rounded Placeholder with Floating Badge */}
+          <div className="lg:col-span-5 relative flex justify-center lg:justify-end">
+            <div className="relative w-full max-w-md sm:max-w-lg">
+              
+              {/* Rounded Photo Placeholder (16px radius / rounded-2xl) */}
+              <div className="relative rounded-2xl aspect-[4/5] bg-gradient-to-b from-[#182E56] via-[#0F1F3D] to-[#0A1529] border-2 border-[#C9A24B]/40 p-6 flex flex-col items-center justify-center text-center shadow-2xl">
+                
+                {/* Decorative corner markers */}
+                <div className="absolute top-3 left-3 w-4 h-4 border-t-2 border-l-2 border-[#C9A24B]" />
+                <div className="absolute top-3 right-3 w-4 h-4 border-t-2 border-r-2 border-[#C9A24B]" />
+                <div className="absolute bottom-3 left-3 w-4 h-4 border-b-2 border-l-2 border-[#C9A24B]" />
+                <div className="absolute bottom-3 right-3 w-4 h-4 border-b-2 border-r-2 border-[#C9A24B]" />
+
+                {/* Silhouette avatar */}
+                <div className="w-24 h-24 rounded-full bg-[#182E56] border border-[#C9A24B]/40 flex items-center justify-center text-[#C9A24B] mb-5 shadow-inner">
+                  <Shield className="w-12 h-12" />
+                </div>
+
+                {/* Clear label */}
+                <div className="px-4 py-2 bg-[#0A1529] rounded-lg border border-[#C9A24B]/40 text-white font-mono text-xs sm:text-sm font-semibold tracking-wide">
+                  {HERO_SECTION.photoPlaceholder}
+                </div>
+
+                <p className="text-xs text-slate-300 mt-3 max-w-xs font-sans">
+                  CEO &amp; MD, SLR-Industrial Security &amp; Facility Services
+                </p>
+              </div>
+
+              {/* Small floating badge */}
+              <div className="absolute -bottom-5 -left-4 sm:-left-6 z-20 max-w-[280px] sm:max-w-xs bg-[#0F1F3D] text-white p-4 rounded-2xl border border-[#C9A24B]/60 shadow-xl flex items-center gap-3">
+                <div className="w-10 h-10 rounded-xl bg-[#C9A24B] text-[#0F1F3D] flex items-center justify-center shrink-0">
+                  <Award className="w-5 h-5 fill-current" />
+                </div>
+                <div>
+                  <p className="text-[10px] font-semibold text-[#C9A24B] uppercase tracking-wider">
+                    Current Leadership
+                  </p>
+                  <p className="text-xs font-medium text-white leading-snug">
+                    {HERO_SECTION.floatingBadge}
+                  </p>
+                </div>
+              </div>
+
+            </div>
           </div>
 
         </div>
-
       </div>
     </section>
   );

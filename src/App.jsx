@@ -1,79 +1,61 @@
 import React, { useState } from 'react';
 import Navbar from './components/Navbar';
 import Hero from './components/Hero';
-import Achievements from './components/Achievements';
 import Services from './components/Services';
 import About from './components/About';
+import Achievements from './components/Achievements';
 import CareerJourney from './components/CareerJourney';
 import MediaAndWriting from './components/MediaAndWriting';
 import Testimonials from './components/Testimonials';
 import Memberships from './components/Memberships';
 import Contact from './components/Contact';
 import Footer from './components/Footer';
-import ServiceModal from './components/ServiceModal';
 
 export default function App() {
-  const [activeModalService, setActiveModalService] = useState(null);
-  const [selectedContactService, setSelectedContactService] = useState('');
+  const [selectedService, setSelectedService] = useState('');
 
-  const handleOpenConsultation = () => {
-    const contactElem = document.getElementById('inquiry');
-    if (contactElem) {
-      contactElem.scrollIntoView({ behavior: 'smooth' });
-    }
-  };
-
-  const handleSelectServiceForContact = (serviceTitle) => {
-    setSelectedContactService(serviceTitle);
-    const contactElem = document.getElementById('inquiry');
+  const handleSelectService = (serviceTitle) => {
+    setSelectedService(serviceTitle);
+    const contactElem = document.getElementById('contact');
     if (contactElem) {
       contactElem.scrollIntoView({ behavior: 'smooth' });
     }
   };
 
   return (
-    <div className="min-h-screen bg-[#F8F8F6] text-[#1A1A1A] font-sans selection:bg-[#A3702C]/20 selection:text-[#0D1322]">
-      {/* 1. Elena Vance Style Navbar with Micro-Bar */}
-      <Navbar onOpenContact={handleOpenConsultation} />
+    <div className="min-h-screen bg-[#FAF7F0] text-[#1E2433] font-sans selection:bg-[#C9A24B]/30 selection:text-[#0F1F3D]">
+      {/* 1. NAVBAR (Sticky, deep navy #0F1F3D, soft shadow, collapses < 800px) */}
+      <Navbar />
 
-      {/* 2. Hero Section (Headline with "threshold" italic accent + Executive Portrait Card) */}
-      <Hero onOpenConsultation={handleOpenConsultation} />
+      {/* 2. HERO (Cream gradient, two columns, gold italic headline, navy & ghost pills, placeholder, floating badge) */}
+      <Hero />
 
-      {/* 3. Quantified Fiduciary Metrics (Dark Obsidian Band) */}
-      <Achievements />
+      {/* 3. SERVICES (Four cards in a row; second card is navy with white text) */}
+      <Services onSelectService={handleSelectService} />
 
-      {/* 4. Three Practice & Advisory Vectors (01, 02, 03 White Cards) */}
-      <Services onSelectService={(service) => setActiveModalService(service)} />
-
-      {/* 5. Massive Editorial Quote Callout & Executive Dossier Narrative */}
+      {/* 4. ABOUT (Split layout on white: image left, text right) */}
       <About />
 
-      {/* 6. Selected Mandates & Career Record (Horizontal Table Rows) */}
+      {/* 5. ACHIEVEMENTS (Full-width navy band, four stat cards, Chief Guest list, Met With row) */}
+      <Achievements />
+
+      {/* 6. CAREER JOURNEY (Vertical timeline, gold dots on thin gold line, on cream) */}
       <CareerJourney />
 
-      {/* 7. Published Treatises, Works & Cultural Monographs (3 Cards Grid) */}
+      {/* 7. MEDIA & WRITING (White section, three cards, quote block with gold left border) */}
       <MediaAndWriting />
 
-      {/* 8. Executive Endorsements & High-Level Dignitary Interface */}
+      {/* 8. TESTIMONIALS (Cream, two cards, quotes exactly as written) */}
       <Testimonials />
 
-      {/* 9. Honorary & Professional Memberships */}
+      {/* 9. MEMBERSHIPS (Pill tags on white) */}
       <Memberships />
 
-      {/* 10. Initiate Direct Mandate Inquiry (Split Layout Form) */}
-      <Contact preselectedService={selectedContactService} />
+      {/* 10. CONTACT (Cream section, 4 white cards with gold top border, two-column form block) */}
+      <Contact preselectedService={selectedService} />
 
-      {/* 11. Minimalist Editorial Footer */}
+      {/* 11. FOOTER (Deep navy #0A1529) */}
       <Footer />
-
-      {/* Interactive Service Detail Modal */}
-      {activeModalService && (
-        <ServiceModal
-          service={activeModalService}
-          onClose={() => setActiveModalService(null)}
-          onSelectForContact={handleSelectServiceForContact}
-        />
-      )}
     </div>
   );
 }

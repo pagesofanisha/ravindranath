@@ -1,71 +1,81 @@
 import React from 'react';
-import { ACHIEVEMENTS_SECTION, CLIENT_CONFIG } from '../data/content';
+import { ACHIEVEMENTS_SECTION } from '../data/content';
+import { Award, Users, Trophy, Sparkles, Calendar, UserCheck } from 'lucide-react';
+
+const ICON_MAP = [Users, Award, Trophy, Sparkles];
 
 export default function Achievements() {
-  const metrics = [
-    {
-      value: "35,000+",
-      title: "L&T Personnel Coordinated",
-      description: "Directly managed health, death, accidental claims, and hospital dispute settlements for 35,000+ employees across Indian and overseas project sites.",
-    },
-    {
-      value: "No. 1",
-      title: "Branch Manager Ranking",
-      description: "Acknowledged as No. 1 Branch Manager among 44 branches and divisions in the Hyderabad Region; declared Best Manager among offices in the region.",
-    },
-    {
-      value: `${CLIENT_CONFIG.yearsOfExperience}+ Yrs`,
-      title: "Fiduciary Industry Scale",
-      description: "Documented executive career spanning public sector insurance underwriting, conglomerate corporate advisory, and industrial security operations.",
-    },
-    {
-      value: "100%",
-      title: "Claimant & Safety Advocacy",
-      description: "Recognized as a practical leader and modern writer at ease in cutting across administrative hierarchies to secure rightful benefits.",
-    },
-  ];
-
   return (
-    <section id="metrics" className="bg-[#0D1322] text-[#F8F8F6] py-16 lg:py-20 border-t border-b border-[#232D42]">
+    <section className="py-20 lg:py-24 bg-[#0F1F3D] text-white relative">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         
-        {/* Header Strip (Elena Vance style) */}
-        <div className="flex flex-col md:flex-row md:items-end justify-between pb-10 border-b border-[#232D42] gap-4">
-          <div>
-            <span className="text-[11px] font-mono uppercase tracking-widest text-[#A3702C] font-semibold block mb-2">
-              [ EMPIRICAL GOVERNANCE &amp; SCALE ]
-            </span>
-            <h2 className="text-3xl sm:text-4xl font-serif font-normal text-white tracking-tight">
-              Quantified Leadership Metrics
-            </h2>
-          </div>
-
-          <p className="text-xs font-mono text-neutral-400 max-w-md leading-relaxed">
-            Empirical performance milestones across four decades of public sector insurance underwriting, corporate conglomerate risk delivery, and industrial facility safety.
+        {/* Header */}
+        <div className="text-center max-w-3xl mx-auto mb-16 space-y-3">
+          <p className="text-xs font-semibold tracking-widest uppercase text-[#C9A24B]">
+            {ACHIEVEMENTS_SECTION.eyebrow}
           </p>
+          <h2 className="text-3xl sm:text-4xl md:text-5xl font-serif font-bold text-white tracking-tight">
+            {ACHIEVEMENTS_SECTION.title}
+          </h2>
+          <div className="w-16 h-0.5 bg-[#C9A24B] mx-auto my-3" />
         </div>
 
-        {/* 4-Column Metric Grid */}
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8 pt-12">
-          {metrics.map((item, idx) => (
-            <div key={idx} className="space-y-3">
-              {/* Massive Serif Number with Bronze Accent */}
-              <div className="text-4xl sm:text-5xl font-serif font-normal tracking-tight text-white flex items-baseline gap-1">
-                <span className="text-[#A3702C] font-light"></span>
-                <span>{item.value}</span>
+        {/* Four Stat Cards with Gold Numbers in Playfair Display */}
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 mb-16">
+          {ACHIEVEMENTS_SECTION.stats.map((stat, idx) => {
+            const IconComp = ICON_MAP[idx] || Award;
+            return (
+              <div
+                key={idx}
+                className="bg-[#182E56]/60 border border-[#C9A24B]/30 hover:border-[#C9A24B] rounded-2xl p-7 flex flex-col justify-between transition-all duration-300 hover:-translate-y-1 shadow-lg"
+              >
+                <div>
+                  <div className="w-12 h-12 rounded-xl bg-[#0F1F3D] border border-[#C9A24B]/30 text-[#C9A24B] flex items-center justify-center mb-5">
+                    <IconComp className="w-6 h-6" />
+                  </div>
+                  <div className="text-3xl sm:text-4xl font-serif font-bold text-[#C9A24B] mb-2 tracking-tight">
+                    {stat.number}
+                  </div>
+                </div>
+                <p className="text-sm text-slate-200 font-sans mt-2">
+                  {stat.label}
+                </p>
               </div>
+            );
+          })}
+        </div>
 
-              {/* Title */}
-              <h3 className="text-sm font-mono font-semibold uppercase tracking-wider text-neutral-200">
-                {item.title}
-              </h3>
+        {/* Chief Guest Honors Banner */}
+        <div className="bg-[#182E56]/40 border border-[#C9A24B]/30 rounded-2xl p-6 sm:p-8 mb-10">
+          <div className="flex items-center gap-2 text-xs font-semibold uppercase tracking-wider text-[#C9A24B] mb-4">
+            <Calendar className="w-4 h-4" />
+            <span>Chief Guest Convocations &amp; Institutional Celebrations</span>
+          </div>
+          <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+            {ACHIEVEMENTS_SECTION.chiefGuest.map((cg, idx) => (
+              <div key={idx} className="flex items-center gap-3 p-3 bg-[#0F1F3D]/80 rounded-xl border border-slate-700">
+                <span className="w-2 h-2 rounded-full bg-[#C9A24B]" />
+                <span className="text-xs sm:text-sm text-slate-200">{cg}</span>
+              </div>
+            ))}
+          </div>
+        </div>
 
-              {/* Description */}
-              <p className="text-xs text-neutral-400 font-sans leading-relaxed">
-                {item.description}
-              </p>
-            </div>
-          ))}
+        {/* "Met with" Row of Small Text */}
+        <div className="pt-6 border-t border-slate-700/60 text-center">
+          <p className="text-xs font-semibold text-[#C9A24B] uppercase tracking-wider mb-3">
+            Interacted With Dignitaries &amp; National Leaders:
+          </p>
+          <div className="flex flex-wrap items-center justify-center gap-2 text-xs text-slate-300">
+            {ACHIEVEMENTS_SECTION.metWith.map((person, idx) => (
+              <span
+                key={idx}
+                className="px-3 py-1 rounded-full bg-[#182E56]/60 border border-slate-700/60"
+              >
+                {person}
+              </span>
+            ))}
+          </div>
         </div>
 
       </div>
