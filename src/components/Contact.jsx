@@ -1,20 +1,21 @@
 import React, { useState } from 'react';
-import { CONTACT_SECTION, CLIENT_CONFIG } from '../data/content';
-import { Phone, Mail, MapPin, Building, Clock, Send, CheckCircle2 } from 'lucide-react';
+import { CLIENT_CONFIG } from '../data/content';
+import { Shield, Lock, Phone, Mail, ArrowUpRight, CheckCircle2, Building, Scale } from 'lucide-react';
 
 export default function Contact({ preselectedService }) {
   const [formData, setFormData] = useState({
     name: '',
-    email: '',
+    entity: '',
     phone: '',
-    service: preselectedService || CONTACT_SECTION.form.servicesList[0],
+    email: '',
+    service: preselectedService || 'Motor & Vehicle Insurance Claims',
     message: '',
+    consent: false,
   });
 
   const [submitted, setSubmitted] = useState(false);
   const [isSubmitting, setIsSubmitting] = useState(false);
 
-  // Update service if preselectedService changes from parent
   React.useEffect(() => {
     if (preselectedService) {
       setFormData((prev) => ({ ...prev, service: preselectedService }));
@@ -22,15 +23,16 @@ export default function Contact({ preselectedService }) {
   }, [preselectedService]);
 
   const handleChange = (e) => {
-    const { name, value } = e.target;
-    setFormData((prev) => ({ ...prev, [name]: value }));
+    const { name, value, type, checked } = e.target;
+    setFormData((prev) => ({
+      ...prev,
+      [name]: type === 'checkbox' ? checked : value,
+    }));
   };
 
   const handleSubmit = (e) => {
     e.preventDefault();
     setIsSubmitting(true);
-
-    // Simulate submission handling
     setTimeout(() => {
       setIsSubmitting(false);
       setSubmitted(true);
@@ -38,207 +40,152 @@ export default function Contact({ preselectedService }) {
   };
 
   return (
-    <section id="contact" className="py-24 bg-white text-slate-800 relative">
+    <section id="inquiry" className="py-20 lg:py-24 bg-[#F8F8F6] border-b border-[#E5E4DF]">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         
-        {/* Header */}
-        <div className="text-center max-w-3xl mx-auto mb-16 space-y-3">
-          <p className="text-xs font-semibold tracking-widest uppercase text-[#A68335]">
-            {CONTACT_SECTION.eyebrow}
-          </p>
-          <h2 className="text-3xl sm:text-4xl md:text-5xl font-serif font-bold text-[#0F1F3D] tracking-tight">
-            {CONTACT_SECTION.title}
-          </h2>
-          <div className="w-16 h-0.5 bg-[#C9A24B] mx-auto my-3" />
-          <p className="text-slate-600 font-sans text-sm sm:text-base leading-relaxed">
-            {CONTACT_SECTION.subtitle}
-          </p>
-        </div>
-
-        {/* Two Columns Grid */}
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-16 items-start">
           
-          {/* Left Column: Direct Contact Information */}
-          <div className="lg:col-span-5 space-y-8">
-            <div className="bg-[#FAF9F5] p-8 rounded-3xl border border-slate-200/90 shadow-md">
-              <h3 className="text-2xl font-serif font-bold text-[#0F1F3D] mb-6">
-                Direct Communication
-              </h3>
+          {/* Left Column: Direct Mandate Info (Elena Vance Style) */}
+          <div className="lg:col-span-5 space-y-6">
+            
+            <span className="text-[11px] font-mono uppercase tracking-widest text-[#A3702C] font-semibold block">
+              [ CONFIDENTIAL RETAINER &amp; MANDATE INQUIRY ]
+            </span>
 
-              <div className="space-y-6">
-                {/* Phone */}
-                <div className="flex items-start gap-4">
-                  <div className="w-11 h-11 rounded-2xl bg-[#0F1F3D] text-[#C9A24B] flex items-center justify-center shrink-0 shadow">
-                    <Phone className="w-5 h-5" />
-                  </div>
-                  <div>
-                    <p className="text-xs font-semibold text-slate-500 uppercase tracking-wider">
-                      Mobile & Direct Line
-                    </p>
-                    <a
-                      href={`tel:${CLIENT_CONFIG.phone.replace(/\s+/g, '')}`}
-                      className="text-base sm:text-lg font-serif font-bold text-[#0F1F3D] hover:text-[#A68335] transition-colors"
-                    >
-                      {CLIENT_CONFIG.phoneDisplay}
-                    </a>
-                  </div>
+            <h2 className="text-3xl sm:text-4xl md:text-5xl font-serif font-normal text-[#0D1322] tracking-tight leading-tight">
+              Initiate Direct Mandate Inquiry
+            </h2>
+
+            <p className="text-sm text-neutral-600 font-sans leading-relaxed font-light">
+              Due to active corporate advisory commitments and specialized case focus, consultations are prioritized for institutional employers, logistics firms, hospitals, and claimants requiring senior-level dispute resolution.
+            </p>
+
+            {/* 3 Feature Boxes with Icons */}
+            <div className="space-y-4 pt-2">
+              
+              <div className="p-4 bg-white border border-[#E5E4DF] flex items-start gap-3.5 shadow-2xs">
+                <div className="w-8 h-8 bg-[#F8F8F6] border border-[#E5E4DF] text-[#A3702C] flex items-center justify-center shrink-0 mt-0.5">
+                  <Lock className="w-4 h-4" />
                 </div>
-
-                {/* Email */}
-                <div className="flex items-start gap-4">
-                  <div className="w-11 h-11 rounded-2xl bg-[#0F1F3D] text-[#C9A24B] flex items-center justify-center shrink-0 shadow">
-                    <Mail className="w-5 h-5" />
-                  </div>
-                  <div>
-                    <p className="text-xs font-semibold text-slate-500 uppercase tracking-wider">
-                      Primary Email Address
-                    </p>
-                    <a
-                      href={`mailto:${CLIENT_CONFIG.primaryEmail}`}
-                      className="text-sm sm:text-base font-semibold text-[#0F1F3D] hover:text-[#A68335] transition-colors break-all"
-                    >
-                      {CLIENT_CONFIG.primaryEmail}
-                    </a>
-                  </div>
+                <div>
+                  <h4 className="text-xs font-mono font-bold uppercase tracking-wider text-[#0D1322]">
+                    Pre-Cleared Mandates
+                  </h4>
+                  <p className="text-xs text-neutral-600 font-sans mt-1">
+                    Direct personal communication with Ravindranaath C cutting across hierarchies with complete discretion.
+                  </p>
                 </div>
-
-                {/* Location */}
-                <div className="flex items-start gap-4">
-                  <div className="w-11 h-11 rounded-2xl bg-[#0F1F3D] text-[#C9A24B] flex items-center justify-center shrink-0 shadow">
-                    <MapPin className="w-5 h-5" />
-                  </div>
-                  <div>
-                    <p className="text-xs font-semibold text-slate-500 uppercase tracking-wider">
-                      Operating Locations
-                    </p>
-                    <p className="text-sm sm:text-base font-semibold text-slate-800">
-                      {CLIENT_CONFIG.location}
-                    </p>
-                  </div>
-                </div>
-
-                {/* Office Address Placeholder */}
-                <div className="flex items-start gap-4">
-                  <div className="w-11 h-11 rounded-2xl bg-[#0F1F3D] text-[#C9A24B] flex items-center justify-center shrink-0 shadow">
-                    <Building className="w-5 h-5" />
-                  </div>
-                  <div>
-                    <p className="text-xs font-semibold text-slate-500 uppercase tracking-wider">
-                      Registered Office
-                    </p>
-                    <p className="text-xs sm:text-sm font-mono text-slate-600 bg-white px-2.5 py-1 rounded border border-slate-200 mt-1">
-                      {CLIENT_CONFIG.officeAddress}
-                    </p>
-                  </div>
-                </div>
-
-                {/* Availability Note */}
-                <div className="pt-4 border-t border-slate-200/80">
-                  <div className="flex items-start gap-2.5 text-xs text-slate-600">
-                    <Clock className="w-4 h-4 text-[#A68335] shrink-0 mt-0.5" />
-                    <span>{CLIENT_CONFIG.availabilityNote}</span>
-                  </div>
-                </div>
-
               </div>
+
+              <div className="p-4 bg-white border border-[#E5E4DF] flex items-start gap-3.5 shadow-2xs">
+                <div className="w-8 h-8 bg-[#F8F8F6] border border-[#E5E4DF] text-[#A3702C] flex items-center justify-center shrink-0 mt-0.5">
+                  <Scale className="w-4 h-4" />
+                </div>
+                <div>
+                  <h4 className="text-xs font-mono font-bold uppercase tracking-wider text-[#0D1322]">
+                    Direct Fiduciary Advocacy
+                  </h4>
+                  <p className="text-xs text-neutral-600 font-sans mt-1">
+                    Decisive resolution of insurer-hospital settlement discrepancies, surveyor claims loss assessments, and facility safety audits.
+                  </p>
+                </div>
+              </div>
+
+              <div className="p-4 bg-white border border-[#E5E4DF] flex items-start gap-3.5 shadow-2xs">
+                <div className="w-8 h-8 bg-[#F8F8F6] border border-[#E5E4DF] text-[#A3702C] flex items-center justify-center shrink-0 mt-0.5">
+                  <Phone className="w-4 h-4" />
+                </div>
+                <div>
+                  <h4 className="text-xs font-mono font-bold uppercase tracking-wider text-[#0D1322]">
+                    Secure Direct Line &amp; Email
+                  </h4>
+                  <div className="text-xs font-mono text-neutral-700 mt-1 space-y-0.5">
+                    <p>Direct: <a href={`tel:${CLIENT_CONFIG.phone.replace(/\s+/g, '')}`} className="font-semibold text-[#0D1322] hover:text-[#A3702C]">{CLIENT_CONFIG.phone}</a></p>
+                    <p>Email: <a href={`mailto:${CLIENT_CONFIG.primaryEmail}`} className="font-semibold text-[#0D1322] hover:text-[#A3702C]">{CLIENT_CONFIG.primaryEmail}</a></p>
+                  </div>
+                </div>
+              </div>
+
             </div>
 
-            {/* Client Guarantee Card */}
-            <div className="bg-[#0F1F3D] text-[#FAF9F5] p-6 rounded-3xl border border-[#C9A24B]/30 shadow-lg flex items-center gap-4">
-              <div className="w-12 h-12 rounded-2xl bg-[#182E56] text-[#C9A24B] flex items-center justify-center shrink-0 font-serif font-bold text-lg">
-                RA
-              </div>
-              <div>
-                <p className="font-serif font-bold text-base text-[#FAF9F5]">
-                  Personal Attention Guarantee
-                </p>
-                <p className="text-xs text-slate-300 mt-0.5">
-                  "People's person, who is at ease in cutting across hierarchies."
-                </p>
-              </div>
+            {/* Domicile & Locations */}
+            <div className="pt-4 border-t border-[#E5E4DF] text-xs font-mono text-neutral-500 space-y-1">
+              <p className="text-[10px] uppercase tracking-widest text-[#A3702C] font-semibold">
+                PRINCIPAL ADVISORY DOMICILE:
+              </p>
+              <p className="text-neutral-700 font-medium">
+                Operational Domicile: Hyderabad &amp; Chennai, India
+              </p>
+              <p className="text-neutral-500">
+                Registered Office: {CLIENT_CONFIG.officeAddress}
+              </p>
             </div>
 
           </div>
 
-          {/* Right Column: Interactive Consultation & Contact Form */}
+          {/* Right Column: Clean Executive Form (Elena Vance Style) */}
           <div className="lg:col-span-7">
-            <div className="bg-white p-8 sm:p-10 rounded-3xl border border-slate-200 shadow-xl">
+            <div className="bg-white border border-[#E5E4DF] p-8 sm:p-10 shadow-sm">
+              
               {submitted ? (
                 <div className="py-12 text-center space-y-4">
-                  <div className="w-16 h-16 rounded-full bg-emerald-50 text-emerald-600 mx-auto flex items-center justify-center border border-emerald-200">
-                    <CheckCircle2 className="w-10 h-10" />
+                  <div className="w-12 h-12 bg-[#F8F8F6] border border-[#A3702C] text-[#A3702C] mx-auto flex items-center justify-center">
+                    <CheckCircle2 className="w-6 h-6" />
                   </div>
-                  <h3 className="text-2xl font-serif font-bold text-[#0F1F3D]">
-                    Consultation Request Received
+                  <h3 className="text-2xl font-serif font-normal text-[#0D1322]">
+                    Mandate Inquiry Transmitted
                   </h3>
-                  <p className="text-slate-600 font-sans text-sm max-w-md mx-auto">
-                    Thank you, <span className="font-semibold text-slate-800">{formData.name}</span>. Your inquiry regarding <span className="font-semibold text-slate-800">{formData.service}</span> has been logged. Ravindranaath C will review your inquiry and follow up directly.
+                  <p className="text-xs font-mono text-neutral-600 max-w-md mx-auto">
+                    Your inquiry has been cataloged. Ravindranaath C will review your mandate details and respond through secure channels.
                   </p>
-                  <div className="pt-4">
-                    <button
-                      type="button"
-                      onClick={() => {
-                        setSubmitted(false);
-                        setFormData({
-                          name: '',
-                          email: '',
-                          phone: '',
-                          service: CONTACT_SECTION.form.servicesList[0],
-                          message: '',
-                        });
-                      }}
-                      className="px-6 py-2.5 rounded-full text-xs font-semibold bg-[#FAF9F5] text-[#0F1F3D] border border-slate-300 hover:bg-[#0F1F3D] hover:text-[#FAF9F5] transition-colors"
-                    >
-                      Send Another Message
-                    </button>
-                  </div>
+                  <button
+                    type="button"
+                    onClick={() => setSubmitted(false)}
+                    className="mt-4 px-6 py-2.5 bg-[#0D1322] text-white text-xs font-mono uppercase"
+                  >
+                    Transmit Another Inquiry
+                  </button>
                 </div>
               ) : (
-                <form onSubmit={handleSubmit} className="space-y-5">
-                  <div className="mb-2">
-                    <h3 className="text-2xl font-serif font-bold text-[#0F1F3D]">
-                      Schedule a Consultation
-                    </h3>
-                    <p className="text-xs text-slate-500 mt-1">
-                      Complete this form for insurance claims support or industrial security advisory.
-                    </p>
-                  </div>
-
-                  {/* Name */}
-                  <div>
-                    <label className="block text-xs font-semibold text-slate-700 uppercase tracking-wider mb-2">
-                      {CONTACT_SECTION.form.nameLabel} <span className="text-red-500">*</span>
-                    </label>
-                    <input
-                      type="text"
-                      name="name"
-                      required
-                      value={formData.name}
-                      onChange={handleChange}
-                      placeholder="e.g. Ramesh Kumar"
-                      className="w-full px-4 py-3 rounded-xl border border-slate-300 bg-[#FAF9F5]/40 text-slate-800 focus:bg-white focus:outline-none focus:ring-2 focus:ring-[#C9A24B] focus:border-transparent transition-all text-sm"
-                    />
-                  </div>
-
-                  {/* Email & Phone Grid */}
+                <form onSubmit={handleSubmit} className="space-y-4 text-xs font-mono">
+                  
+                  {/* Row 1: Name & Entity */}
                   <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                     <div>
-                      <label className="block text-xs font-semibold text-slate-700 uppercase tracking-wider mb-2">
-                        {CONTACT_SECTION.form.emailLabel} <span className="text-red-500">*</span>
+                      <label className="block text-[11px] uppercase tracking-wider text-neutral-600 mb-1.5">
+                        PRINCIPAL NAME / TITLE *
                       </label>
                       <input
-                        type="email"
-                        name="email"
+                        type="text"
+                        name="name"
                         required
-                        value={formData.email}
+                        value={formData.name}
                         onChange={handleChange}
-                        placeholder="e.g. ramesh@example.com"
-                        className="w-full px-4 py-3 rounded-xl border border-slate-300 bg-[#FAF9F5]/40 text-slate-800 focus:bg-white focus:outline-none focus:ring-2 focus:ring-[#C9A24B] focus:border-transparent transition-all text-sm"
+                        placeholder="e.g. Ramesh Kumar, Director"
+                        className="w-full px-3.5 py-3 border border-[#E5E4DF] bg-[#F8F8F6] text-[#0D1322] focus:bg-white focus:outline-none focus:border-[#A3702C] transition-colors"
                       />
                     </div>
                     <div>
-                      <label className="block text-xs font-semibold text-slate-700 uppercase tracking-wider mb-2">
-                        {CONTACT_SECTION.form.phoneLabel} <span className="text-red-500">*</span>
+                      <label className="block text-[11px] uppercase tracking-wider text-neutral-600 mb-1.5">
+                        INSTITUTIONAL ENTITY / COMPANY *
+                      </label>
+                      <input
+                        type="text"
+                        name="entity"
+                        required
+                        value={formData.entity}
+                        onChange={handleChange}
+                        placeholder="e.g. Logistics / Healthcare Ltd"
+                        className="w-full px-3.5 py-3 border border-[#E5E4DF] bg-[#F8F8F6] text-[#0D1322] focus:bg-white focus:outline-none focus:border-[#A3702C] transition-colors"
+                      />
+                    </div>
+                  </div>
+
+                  {/* Row 2: Phone & Email */}
+                  <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                    <div>
+                      <label className="block text-[11px] uppercase tracking-wider text-neutral-600 mb-1.5">
+                        CONTACT TELEPHONE NUMBER *
                       </label>
                       <input
                         type="tel"
@@ -247,34 +194,48 @@ export default function Contact({ preselectedService }) {
                         value={formData.phone}
                         onChange={handleChange}
                         placeholder="+91 98765 43210"
-                        className="w-full px-4 py-3 rounded-xl border border-slate-300 bg-[#FAF9F5]/40 text-slate-800 focus:bg-white focus:outline-none focus:ring-2 focus:ring-[#C9A24B] focus:border-transparent transition-all text-sm"
+                        className="w-full px-3.5 py-3 border border-[#E5E4DF] bg-[#F8F8F6] text-[#0D1322] focus:bg-white focus:outline-none focus:border-[#A3702C] transition-colors"
+                      />
+                    </div>
+                    <div>
+                      <label className="block text-[11px] uppercase tracking-wider text-neutral-600 mb-1.5">
+                        CORPORATE EMAIL ADDRESS *
+                      </label>
+                      <input
+                        type="email"
+                        name="email"
+                        required
+                        value={formData.email}
+                        onChange={handleChange}
+                        placeholder="principal@institution.com"
+                        className="w-full px-3.5 py-3 border border-[#E5E4DF] bg-[#F8F8F6] text-[#0D1322] focus:bg-white focus:outline-none focus:border-[#A3702C] transition-colors"
                       />
                     </div>
                   </div>
 
-                  {/* Service Selection */}
+                  {/* Row 3: Service Mandate Select */}
                   <div>
-                    <label className="block text-xs font-semibold text-slate-700 uppercase tracking-wider mb-2">
-                      {CONTACT_SECTION.form.serviceLabel}
+                    <label className="block text-[11px] uppercase tracking-wider text-neutral-600 mb-1.5">
+                      SELECT ENGAGEMENT MANDATE *
                     </label>
                     <select
                       name="service"
                       value={formData.service}
                       onChange={handleChange}
-                      className="w-full px-4 py-3 rounded-xl border border-slate-300 bg-[#FAF9F5]/40 text-slate-800 focus:bg-white focus:outline-none focus:ring-2 focus:ring-[#C9A24B] focus:border-transparent transition-all text-sm"
+                      className="w-full px-3.5 py-3 border border-[#E5E4DF] bg-[#F8F8F6] text-[#0D1322] focus:bg-white focus:outline-none focus:border-[#A3702C] transition-colors"
                     >
-                      {CONTACT_SECTION.form.servicesList.map((service, idx) => (
-                        <option key={idx} value={service}>
-                          {service}
-                        </option>
-                      ))}
+                      <option value="Motor & Vehicle Insurance Claims">Motor &amp; Vehicle Insurance Claims (Accidental / 3rd Party)</option>
+                      <option value="Health & Life Insurance Benefits">Health &amp; Life Insurance Benefits (Hospital Disputes)</option>
+                      <option value="Loss Prevention & Risk Management">Loss Prevention &amp; Risk Management Advisory</option>
+                      <option value="Industrial Security & Facility Retainer">Industrial Security &amp; Facility Retainer (SLR-IS &amp; FS)</option>
+                      <option value="General Corporate Consultation">General Corporate Consultation / Executive Review</option>
                     </select>
                   </div>
 
-                  {/* Message */}
+                  {/* Row 4: Message Textarea */}
                   <div>
-                    <label className="block text-xs font-semibold text-slate-700 uppercase tracking-wider mb-2">
-                      {CONTACT_SECTION.form.messageLabel} <span className="text-red-500">*</span>
+                    <label className="block text-[11px] uppercase tracking-wider text-neutral-600 mb-1.5">
+                      BRIEF OUTLINE OF MANDATE OR DISPUTE *
                     </label>
                     <textarea
                       name="message"
@@ -282,28 +243,47 @@ export default function Contact({ preselectedService }) {
                       required
                       value={formData.message}
                       onChange={handleChange}
-                      placeholder="Please summarize your insurance claim, risk challenge, or security requirement..."
-                      className="w-full px-4 py-3 rounded-xl border border-slate-300 bg-[#FAF9F5]/40 text-slate-800 focus:bg-white focus:outline-none focus:ring-2 focus:ring-[#C9A24B] focus:border-transparent transition-all text-sm resize-none"
+                      placeholder="Outline institutional scale, claims dispute summary, or security retainer requirement..."
+                      className="w-full px-3.5 py-3 border border-[#E5E4DF] bg-[#F8F8F6] text-[#0D1322] focus:bg-white focus:outline-none focus:border-[#A3702C] transition-colors resize-none"
                     />
                   </div>
 
-                  {/* Submit Button */}
+                  {/* Consent Checkbox */}
+                  <div className="flex items-start gap-2 pt-1 text-[11px] text-neutral-500">
+                    <input
+                      type="checkbox"
+                      id="consent"
+                      name="consent"
+                      required
+                      checked={formData.consent}
+                      onChange={handleChange}
+                      className="mt-0.5"
+                    />
+                    <label htmlFor="consent">
+                      I understand Ravindranaath C acts with full fiduciary confidentiality and direct personal advocacy.
+                    </label>
+                  </div>
+
+                  {/* Full-width dark button (Elena Vance Style) */}
                   <div className="pt-2">
                     <button
                       type="submit"
                       disabled={isSubmitting}
-                      className="w-full inline-flex items-center justify-center gap-2 px-8 py-4 rounded-full text-base font-semibold bg-[#0F1F3D] text-[#FAF9F5] hover:bg-[#182E56] border border-[#C9A24B]/40 shadow-lg hover:shadow-xl transition-all duration-300 disabled:opacity-60 cursor-pointer"
+                      className="w-full flex items-center justify-center gap-3 py-4 bg-[#0D1322] hover:bg-[#162038] text-white text-xs font-mono uppercase font-semibold tracking-wider transition-all shadow-md group cursor-pointer border border-[#0D1322]"
                     >
-                      <Send className="w-4 h-4 text-[#C9A24B]" />
-                      <span>{isSubmitting ? 'Submitting...' : CONTACT_SECTION.form.submitButton}</span>
+                      <span>{isSubmitting ? 'TRANSMITTING...' : 'TRANSMIT CONFIDENTIAL INQUIRY'}</span>
+                      <ArrowUpRight className="w-4 h-4 text-[#A3702C] group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform" />
                     </button>
                   </div>
+
                 </form>
               )}
+
             </div>
           </div>
 
         </div>
+
       </div>
     </section>
   );

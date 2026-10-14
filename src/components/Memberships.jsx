@@ -1,38 +1,35 @@
 import React from 'react';
 import { MEMBERSHIPS_SECTION } from '../data/content';
-import { Award, Shield } from 'lucide-react';
+import { Shield } from 'lucide-react';
 
 export default function Memberships() {
   return (
-    <section className="py-20 bg-[#FAF9F5] text-slate-800 border-t border-b border-slate-200/80">
+    <section id="affiliations" className="py-16 bg-[#F8F8F6] border-b border-[#E5E4DF]">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         
-        {/* Header */}
-        <div className="text-center max-w-3xl mx-auto mb-12 space-y-2">
-          <p className="text-xs font-semibold tracking-widest uppercase text-[#A68335]">
-            {MEMBERSHIPS_SECTION.eyebrow}
-          </p>
-          <h2 className="text-2xl sm:text-3xl md:text-4xl font-serif font-bold text-[#0F1F3D]">
-            {MEMBERSHIPS_SECTION.title}
-          </h2>
-          <p className="text-xs sm:text-sm text-slate-600 font-sans">
-            {MEMBERSHIPS_SECTION.subtitle}
-          </p>
+        <div className="flex flex-col md:flex-row md:items-center justify-between pb-6 border-b border-[#E5E4DF] gap-4 mb-8">
+          <div>
+            <span className="text-[11px] font-mono uppercase tracking-widest text-[#A3702C] font-semibold block mb-1">
+              [ ACCREDITATIONS &amp; AFFILIATIONS ]
+            </span>
+            <h3 className="text-2xl font-serif font-normal text-[#0D1322]">
+              Honorary &amp; Professional Memberships
+            </h3>
+          </div>
+          <span className="text-xs font-mono text-neutral-500 uppercase tracking-wider">
+            CIVIC, LEGAL &amp; LOSS PREVENTION COUNCILS
+          </span>
         </div>
 
-        {/* Logo-Style Pill Tags */}
-        <div className="flex flex-wrap items-center justify-center gap-3.5 sm:gap-4 max-w-5xl mx-auto">
+        {/* Clean Logo-Style Box Pills */}
+        <div className="flex flex-wrap gap-2.5">
           {MEMBERSHIPS_SECTION.items.map((item, idx) => (
             <div
               key={idx}
-              className="group inline-flex items-center gap-2.5 px-5 py-3 rounded-full bg-white border border-slate-200 shadow-sm hover:shadow-md hover:border-[#C9A24B] hover:bg-[#FAF9F5] transition-all duration-200 cursor-default"
+              className="inline-flex items-center gap-2 px-4 py-2 bg-white border border-[#E5E4DF] text-xs font-mono uppercase text-neutral-800 shadow-2xs hover:border-[#A3702C] transition-colors"
             >
-              <div className="w-6 h-6 rounded-full bg-[#FAF9F5] border border-[#C9A24B]/40 group-hover:bg-[#C9A24B] group-hover:text-[#0F1F3D] text-[#A68335] flex items-center justify-center transition-colors">
-                <Shield className="w-3.5 h-3.5" />
-              </div>
-              <span className="text-xs sm:text-sm font-semibold text-slate-700 group-hover:text-[#0F1F3D]">
-                {item}
-              </span>
+              <Shield className="w-3 h-3 text-[#A3702C]" />
+              <span>{item}</span>
             </div>
           ))}
         </div>

@@ -1,114 +1,119 @@
 import React from 'react';
 import { CAREER_JOURNEY_SECTION } from '../data/content';
-import { Briefcase, Calendar, Building, Info } from 'lucide-react';
+import { ArrowUpRight, Info } from 'lucide-react';
 
 export default function CareerJourney() {
+  const mandates = [
+    {
+      period: "2023 – PRESENT | EXECUTIVE SECURITY",
+      organization: "SLR-Industrial Security & Facility Services",
+      role: "CEO & Managing Director",
+      description: "Executive stewardship of industrial security operations, detective facility services, premises safety, and specialized manpower outsourcing contracts.",
+      statNumber: "Active",
+      statLabel: "EXECUTIVE RETAINERS",
+    },
+    {
+      period: "2013 – 2020 | CONGLOMERATE ADVISORY",
+      organization: "Larsen & Toubro Ltd (L&T Constructions, HQ Chennai)",
+      role: "Senior Insurance Coordinator & Service Delivery Leader",
+      description: "Risk Management Advisor / Consultant. Coordinated health, accidental, and life insurance benefits for 35,000+ L&T employees across Indian project sites and foreign installations, resolving complex insurer-hospital disputes.",
+      statNumber: "35,000+",
+      statLabel: "EMPLOYEES COORDINATED",
+    },
+    {
+      period: "2004 – 2012 | EXECUTIVE MANAGEMENT",
+      organization: "Industrial Security & Detective Facility Services",
+      role: "Director / CEO",
+      description: "Led risk management, industrial detective investigations, and facility operations. [Entity legal name from original scan pending client confirmation].",
+      statNumber: "8+ Yrs",
+      statLabel: "INDUSTRIAL DETECTIVE SVCS",
+    },
+    {
+      period: "1978 – 2002 | PUBLIC SECTOR (GOVT. OF INDIA)",
+      organization: "National Insurance Company Ltd (Hyderabad Region)",
+      role: "Branch Manager (March 1978 – May 2002)",
+      description: "Acknowledged as No. 1 Branch Manager among 44 branches and divisions in the Hyderabad Region. Declared Best Manager among the offices in the region over a 24-year distinguished public tenure.",
+      statNumber: "No. 1 / 44",
+      statLabel: "REGIONAL BRANCH RANKING",
+    },
+    {
+      period: "1974 – 1978 | BROADCASTING & MEDIA",
+      organization: "All India Radio (AIR), Hyderabad",
+      role: "Production Assistant, Programmer, Presenter & Writer",
+      description: "Broadcast journalism, news reel presentation, and scriptwriting for regional radio programming. [Recorded as 1074 in scan, standardized as 1974].",
+      statNumber: "AIR",
+      statLabel: "STATEWIDE NEWS REELS",
+    },
+  ];
+
   return (
-    <section id="career" className="py-24 bg-[#FAF9F5] text-slate-800 relative">
-      <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+    <section id="mandates" className="py-20 lg:py-24 bg-[#F8F8F6] border-b border-[#E5E4DF]">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         
-        {/* Header */}
-        <div className="text-center max-w-3xl mx-auto mb-16 space-y-3">
-          <p className="text-xs font-semibold tracking-widest uppercase text-[#A68335]">
-            {CAREER_JOURNEY_SECTION.eyebrow}
-          </p>
-          <h2 className="text-3xl sm:text-4xl md:text-5xl font-serif font-bold text-[#0F1F3D] tracking-tight">
-            {CAREER_JOURNEY_SECTION.title}
-          </h2>
-          <div className="w-16 h-0.5 bg-[#C9A24B] mx-auto my-3" />
-          <p className="text-slate-600 font-sans text-sm sm:text-base leading-relaxed">
-            {CAREER_JOURNEY_SECTION.subtitle}
-          </p>
-        </div>
-
-        {/* Vertical Timeline */}
-        <div className="relative">
-          {/* Vertical navy line down the timeline */}
-          <div className="absolute left-4 md:left-1/2 top-4 bottom-4 w-0.5 bg-[#0F1F3D]/20 -translate-x-1/2" />
-
-          <div className="space-y-12">
-            {CAREER_JOURNEY_SECTION.timeline.map((item, index) => {
-              const isEven = index % 2 === 0;
-
-              return (
-                <div
-                  key={index}
-                  className="relative flex flex-col md:flex-row items-start md:items-center"
-                >
-                  {/* Timeline Dot (Gold dot on Navy line) */}
-                  <div className="absolute left-4 md:left-1/2 top-6 -translate-x-1/2 z-10 w-6 h-6 rounded-full bg-[#FAF9F5] border-4 border-[#0F1F3D] flex items-center justify-center shadow">
-                    <div className="w-2 h-2 rounded-full bg-[#C9A24B]" />
-                  </div>
-
-                  {/* Left Column (Desktop) */}
-                  <div
-                    className={`pl-12 md:pl-0 w-full md:w-1/2 ${
-                      isEven
-                        ? 'md:pr-12 md:text-right order-1'
-                        : 'md:order-2 md:pl-12 md:text-left'
-                    }`}
-                  >
-                    <div
-                      className={`bg-white p-6 sm:p-7 rounded-2xl border border-slate-200/80 shadow-md hover:shadow-xl transition-all duration-300 ${
-                        index === 0 ? 'ring-2 ring-[#C9A24B]/40' : ''
-                      }`}
-                    >
-                      {/* Period & Role Tag */}
-                      <div
-                        className={`flex flex-wrap items-center gap-2 mb-2 ${
-                          isEven ? 'md:justify-end' : 'md:justify-start'
-                        }`}
-                      >
-                        <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-xs font-bold bg-[#0F1F3D] text-[#FAF9F5]">
-                          <Calendar className="w-3 h-3 text-[#C9A24B]" />
-                          {item.period}
-                        </span>
-                        <span className="inline-flex items-center px-2.5 py-0.5 rounded-full text-[11px] font-medium bg-[#FAF9F5] text-[#A68335] border border-[#C9A24B]/30">
-                          {item.badge}
-                        </span>
-                      </div>
-
-                      {/* Role Title */}
-                      <h3 className="text-lg sm:text-xl font-serif font-bold text-[#0F1F3D] mb-1">
-                        {item.role}
-                      </h3>
-
-                      {/* Organization Name */}
-                      <div
-                        className={`flex items-center gap-1.5 text-xs font-semibold text-[#A68335] uppercase tracking-wide mb-3 ${
-                          isEven ? 'md:justify-end' : 'md:justify-start'
-                        }`}
-                      >
-                        <Building className="w-3.5 h-3.5" />
-                        <span>{item.organization}</span>
-                      </div>
-
-                      {/* Description */}
-                      <p className="text-xs sm:text-sm text-slate-600 leading-relaxed font-sans">
-                        {item.description}
-                      </p>
-                    </div>
-                  </div>
-
-                  {/* Empty placeholder spacer for the opposite side on desktop */}
-                  <div
-                    className={`hidden md:block w-1/2 ${
-                      isEven ? 'order-2' : 'order-1'
-                    }`}
-                  />
-                </div>
-              );
-            })}
+        {/* Header Strip */}
+        <div className="flex flex-col md:flex-row md:items-end justify-between pb-10 border-b border-[#E5E4DF] gap-4 mb-12">
+          <div>
+            <span className="text-[11px] font-mono uppercase tracking-widest text-[#A3702C] font-semibold block mb-2">
+              [ RECORD OF PRINCIPAL MANDATES ]
+            </span>
+            <h2 className="text-3xl sm:text-4xl font-serif font-normal text-[#0D1322] tracking-tight">
+              Selected Mandates &amp; Career Record
+            </h2>
           </div>
+
+          <span className="text-xs font-mono text-neutral-500 uppercase tracking-wider">
+            CHRONOLOGICAL DOSSIER · 1974 TO PRESENT
+          </span>
         </div>
 
-        {/* Verification banner for timeline notes */}
-        <div className="mt-16 p-4 rounded-xl bg-white border border-slate-200 text-slate-600 text-xs flex items-center gap-3 max-w-2xl mx-auto shadow-sm">
-          <Info className="w-5 h-5 text-[#C9A24B] shrink-0" />
-          <p>
-            <span className="font-semibold text-slate-800">Verification note: </span>
-            The 2004–2012 company name and 1974 All India Radio start date are logged from the original source scan for final client confirmation.
-          </p>
+        {/* Horizontal Table / Card Rows (Elena Vance Style) */}
+        <div className="space-y-4">
+          {mandates.map((m, idx) => (
+            <div
+              key={idx}
+              className="bg-white border border-[#E5E4DF] p-6 sm:p-8 hover:border-[#A3702C] transition-colors shadow-xs group"
+            >
+              <div className="grid grid-cols-1 lg:grid-cols-12 gap-6 items-center">
+                
+                {/* Left Column: Dates & Role (4 cols) */}
+                <div className="lg:col-span-4 space-y-1">
+                  <span className="text-[11px] font-mono uppercase tracking-wider text-[#A3702C] font-semibold block">
+                    {m.period}
+                  </span>
+                  <h3 className="font-serif text-xl sm:text-2xl font-bold text-[#0D1322] leading-snug">
+                    {m.organization}
+                  </h3>
+                  <p className="text-xs font-mono text-neutral-600 uppercase tracking-wider">
+                    {m.role}
+                  </p>
+                </div>
+
+                {/* Middle Column: Detailed Scope (5 cols) */}
+                <div className="lg:col-span-5 text-sm text-neutral-700 font-sans leading-relaxed font-light">
+                  <p>{m.description}</p>
+                </div>
+
+                {/* Right Column: Stat Highlight (3 cols) */}
+                <div className="lg:col-span-3 lg:text-right border-t lg:border-t-0 lg:border-l border-[#F0EFEA] pt-4 lg:pt-0 lg:pl-6">
+                  <span className="text-2xl sm:text-3xl font-serif font-bold text-[#0D1322] block tracking-tight group-hover:text-[#A3702C] transition-colors">
+                    {m.statNumber}
+                  </span>
+                  <span className="text-[10px] font-mono uppercase tracking-widest text-neutral-500 block mt-1">
+                    {m.statLabel}
+                  </span>
+                </div>
+
+              </div>
+            </div>
+          ))}
+        </div>
+
+        {/* Verification Note */}
+        <div className="mt-8 p-3.5 bg-[#FFFFFF] border border-[#E5E4DF] text-xs font-mono text-neutral-500 flex items-center gap-3">
+          <Info className="w-4 h-4 text-[#A3702C] shrink-0" />
+          <span>
+            RECORD AUDIT: 2004–2012 company name &amp; AIR 1974 start date are preserved directly from source documentation for client confirmation.
+          </span>
         </div>
 
       </div>

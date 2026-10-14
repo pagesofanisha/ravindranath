@@ -1,97 +1,121 @@
 import React from 'react';
-import { ABOUT_SECTION } from '../data/content';
+import { CLIENT_CONFIG } from '../data/content';
 import PhotoPlaceholder from './PhotoPlaceholder';
-import { CheckCircle2, Quote } from 'lucide-react';
+import { Check, ShieldCheck, HeartHandshake } from 'lucide-react';
 
 export default function About() {
   return (
-    <section id="about" className="py-24 bg-white text-slate-800 relative overflow-hidden">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-16 items-center">
+    <section id="about" className="py-20 lg:py-24 bg-[#F8F8F6] border-b border-[#E5E4DF]">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-16">
+        
+        {/* Massive Editorial Callout Quote (Elena Vance Style) */}
+        <div className="bg-[#EFEFEA] border-l-4 border-[#A3702C] p-8 sm:p-12 md:p-14 shadow-xs">
+          <blockquote className="font-serif italic font-normal text-2xl sm:text-3xl md:text-4xl text-[#0D1322] leading-[1.3] mb-6">
+            “Life is beautiful, if used properly. If We Don't Change, We Don't Grow. If We Don't Grow, We Are Not Living.”
+          </blockquote>
           
-          {/* Left Column: Image Placeholder */}
-          <div className="lg:col-span-5 relative">
-            <div className="relative mx-auto max-w-md lg:max-w-none">
-              
-              {/* Decorative background framing */}
-              <div className="absolute -inset-3 rounded-3xl bg-[#FAF9F5] border border-[#C9A24B]/30 -rotate-1 pointer-events-none" />
-              
-              <PhotoPlaceholder
-                label={ABOUT_SECTION.imagePlaceholder.label}
-                caption={ABOUT_SECTION.imagePlaceholder.caption}
-                alt={ABOUT_SECTION.imagePlaceholder.alt}
-                aspectRatio="aspect-[4/5]"
-                shape="rounded-2xl"
-                className="w-full relative z-10"
-              />
+          <div className="flex flex-wrap items-center gap-3 text-xs font-mono tracking-wider text-neutral-600 uppercase border-t border-[#DFDED7] pt-4">
+            <span className="font-bold text-[#0D1322]">RAVINDRANAATH C</span>
+            <span>·</span>
+            <span>CEO &amp; MD, SLR-INDUSTRIAL SECURITY &amp; FACILITY SERVICES</span>
+            <span>·</span>
+            <span className="text-[#A3702C]">“ALL THE WAY – WITH YOU – YOUR MAN IN INDIA”</span>
+          </div>
+        </div>
 
-              {/* Quote card below image */}
-              <div className="relative z-20 -mt-8 mx-4 sm:mx-6 bg-[#0F1F3D] text-[#FAF9F5] p-5 rounded-2xl border border-[#C9A24B]/40 shadow-xl flex items-start gap-3">
-                <Quote className="w-6 h-6 text-[#C9A24B] shrink-0 fill-current opacity-80 mt-1" />
-                <p className="text-xs sm:text-sm font-serif italic text-slate-200">
-                  "{ABOUT_SECTION.personalPhilosophy.quotes[0]}"
-                </p>
-              </div>
-
-            </div>
+        {/* Narrative Section: Split Biography & Operating Philosophy */}
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-16 items-start">
+          
+          {/* Left Column: Photo of Executive Working / Meeting */}
+          <div className="lg:col-span-5">
+            <PhotoPlaceholder
+              label="[PHOTO: Ravindranaath C – working / meeting photo]"
+              caption="Executive in consultation & corporate review"
+              aspectRatio="aspect-[4/5]"
+              showMetadataTray={true}
+              badgeText="EXECUTIVE RECORD"
+              principalName="RAVINDRANAATH C"
+              principalTitle="Service Delivery Leader & Risk Management Advisor"
+              metadata={[
+                { label: "EXPERIENCE", value: `${CLIENT_CONFIG.yearsOfExperience}+ YEARS` },
+                { label: "ORIGIN", value: "HYDERABAD, AP" },
+                { label: "FIDUCIARY", value: "CLAIM ADVOCATE" },
+              ]}
+              className="w-full"
+            />
           </div>
 
-          {/* Right Column: Narrative & Highlights */}
+          {/* Right Column: Bio Narrative */}
           <div className="lg:col-span-7 space-y-6">
             
-            {/* Eyebrow */}
-            <div className="inline-block">
-              <span className="text-xs font-semibold tracking-widest uppercase text-[#A68335] bg-[#FAF9F5] px-3.5 py-1.5 rounded-full border border-[#C9A24B]/30">
-                {ABOUT_SECTION.eyebrow}
-              </span>
+            <div className="flex items-center gap-2 text-xs font-mono uppercase tracking-widest text-[#A3702C]">
+              <span>[ 02 / EXECUTIVE DOSSIER &amp; FIDUCIARY ETHIC ]</span>
             </div>
 
-            {/* Heading */}
-            <h2 className="text-3xl sm:text-4xl md:text-5xl font-serif font-bold text-[#0F1F3D] tracking-tight leading-tight">
-              {ABOUT_SECTION.heading}
+            <h2 className="text-3xl sm:text-4xl md:text-5xl font-serif font-normal text-[#0D1322] tracking-tight leading-tight">
+              Guiding You Through Claims, Security &amp; Confidence.
             </h2>
 
-            <div className="w-16 h-0.5 bg-[#C9A24B]" />
+            <div className="w-16 h-0.5 bg-[#A3702C]" />
 
-            {/* Narrative text from PDF */}
-            <div className="space-y-4 text-slate-600 font-sans text-base leading-relaxed">
-              {ABOUT_SECTION.narrativeParagraphs.map((paragraph, index) => (
-                <p key={index}>{paragraph}</p>
-              ))}
+            <div className="space-y-4 text-neutral-700 font-sans text-base leading-relaxed font-light">
+              <p>
+                A native of Hyderabad, qualified in General Insurance, who began his distinguished career with <span className="font-medium text-neutral-900">National Insurance Company Ltd (1978–2002)</span> and built a four-decade career in insurance, industrial security, and customer care, including high-stakes leadership roles at <span className="font-medium text-neutral-900">Larsen &amp; Toubro Ltd (2013–2020)</span> and his current role as <span className="font-medium text-neutral-900">CEO &amp; MD of SLR-Industrial Security &amp; Facility Services</span>.
+              </p>
+              <p>
+                Over several decades of executive service, Ravindranaath has spearheaded critical risk management initiatives, navigated high-stakes claim negotiations, and bridged communication across administrative and regulatory tiers.
+              </p>
             </div>
 
-            {/* Bullet Highlights from PDF */}
-            <div className="pt-2 space-y-3.5">
-              {ABOUT_SECTION.highlights.map((highlight, index) => (
-                <div key={index} className="flex items-start gap-3">
-                  <div className="w-5 h-5 rounded-full bg-[#FAF9F5] border border-[#C9A24B] flex items-center justify-center shrink-0 mt-0.5 text-[#A68335]">
-                    <CheckCircle2 className="w-4 h-4 fill-current text-[#C9A24B]" />
-                  </div>
-                  <span className="text-sm sm:text-base font-medium text-slate-700">
-                    {highlight}
-                  </span>
+            {/* Bullet Highlights */}
+            <div className="space-y-3 pt-2">
+              <div className="flex items-start gap-3 p-3.5 bg-white border border-[#E5E4DF]">
+                <div className="w-4 h-4 mt-0.5 bg-[#A3702C]/15 text-[#A3702C] flex items-center justify-center shrink-0">
+                  <Check className="w-3 h-3 stroke-[3]" />
                 </div>
-              ))}
-            </div>
+                <div>
+                  <h4 className="font-mono text-xs font-semibold text-[#0D1322] uppercase tracking-wide">
+                    People's Person Across Hierarchies
+                  </h4>
+                  <p className="text-xs text-neutral-600 font-sans mt-0.5">
+                    "People's person, who is at ease in cutting across hierarchies" — resolving disputes directly between employees, corporate heads, and medical boards.
+                  </p>
+                </div>
+              </div>
 
-            {/* Personal Philosophy / Axioms Strip */}
-            <div className="mt-8 pt-6 border-t border-slate-100 flex flex-wrap gap-2">
-              <span className="text-xs font-semibold text-[#0F1F3D] self-center mr-2">
-                Guiding Principles:
-              </span>
-              {ABOUT_SECTION.personalPhilosophy.quotes.slice(1).map((quote, idx) => (
-                <span
-                  key={idx}
-                  className="inline-block text-xs text-slate-600 bg-[#FAF9F5] px-3 py-1.5 rounded-full border border-slate-200"
-                >
-                  "{quote}"
-                </span>
-              ))}
+              <div className="flex items-start gap-3 p-3.5 bg-white border border-[#E5E4DF]">
+                <div className="w-4 h-4 mt-0.5 bg-[#A3702C]/15 text-[#A3702C] flex items-center justify-center shrink-0">
+                  <Check className="w-3 h-3 stroke-[3]" />
+                </div>
+                <div>
+                  <h4 className="font-mono text-xs font-semibold text-[#0D1322] uppercase tracking-wide">
+                    High-Level Dignitary Interfacing
+                  </h4>
+                  <p className="text-xs text-neutral-600 font-sans mt-0.5">
+                    Documented interactions interfacing with top government officials, ministers, governors, and policymakers on regulatory and institutional safety.
+                  </p>
+                </div>
+              </div>
+
+              <div className="flex items-start gap-3 p-3.5 bg-white border border-[#E5E4DF]">
+                <div className="w-4 h-4 mt-0.5 bg-[#A3702C]/15 text-[#A3702C] flex items-center justify-center shrink-0">
+                  <Check className="w-3 h-3 stroke-[3]" />
+                </div>
+                <div>
+                  <h4 className="font-mono text-xs font-semibold text-[#0D1322] uppercase tracking-wide">
+                    Dispute Resolution Between Insurers &amp; Hospitals
+                  </h4>
+                  <p className="text-xs text-neutral-600 font-sans mt-0.5">
+                    Personalized advocacy ensuring rightful settlement for employees and claimants facing delayed or denied claims.
+                  </p>
+                </div>
+              </div>
             </div>
 
           </div>
 
         </div>
+
       </div>
     </section>
   );

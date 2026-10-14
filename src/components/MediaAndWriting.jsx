@@ -1,91 +1,92 @@
 import React from 'react';
-import { MEDIA_AND_WRITING_SECTION } from '../data/content';
-import { BookOpen, Radio, Newspaper, FileEdit, Sparkles } from 'lucide-react';
-
-const ICON_MAP = {
-  BookOpen: BookOpen,
-  Radio: Radio,
-  Newspaper: Newspaper,
-  FileEdit: FileEdit,
-};
+import { ArrowDown } from 'lucide-react';
 
 export default function MediaAndWriting() {
+  const publications = [
+    {
+      category: "[ LITERARY FICTION & DRAMA ]",
+      badge: "STATEWIDE CIRCULATION",
+      title: "Telugu Stories, Features & Plays",
+      description: "Written and published numerous Telugu short stories, cultural features, and theatrical plays portraying social themes, human resilience, and moral philosophy across leading weeklies.",
+      publication: "ANDHRA PATRIKA · ANDHRA JYOTI · MAYURI",
+      action: "PERIODICAL PUBLICATIONS",
+    },
+    {
+      category: "[ PUBLIC BROADCASTING ]",
+      badge: "STATE RADIO",
+      title: "News Reels & Radio Broadcasts",
+      description: "Scripted, edited, and presented news reels and literary features on All India Radio (AIR) Hyderabad, bringing contemporary social narratives to broad regional audiences.",
+      publication: "ALL INDIA RADIO (AIR), HYDERABAD",
+      action: "NEWS REEL PRESENTATIONS",
+    },
+    {
+      category: "[ CORPORATE EDITORIAL ]",
+      badge: "2014 – 2020",
+      title: "L&T In-House e-Magazine",
+      description: "Pioneered the concept, compilation, and editorial direction of the official in-house e-Magazine at Larsen & Toubro, circulating to tens of thousands of corporate employees.",
+      publication: "LARSEN & TOUBRO (HQ CHENNAI)",
+      action: "CHIEF EDITORIAL DIRECTION",
+    },
+  ];
+
   return (
-    <section id="media" className="py-24 bg-white text-slate-800 relative">
+    <section id="publications" className="py-20 lg:py-24 bg-[#F8F8F6] border-b border-[#E5E4DF]">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         
-        {/* Header */}
-        <div className="text-center max-w-3xl mx-auto mb-16 space-y-3">
-          <p className="text-xs font-semibold tracking-widest uppercase text-[#A68335]">
-            {MEDIA_AND_WRITING_SECTION.eyebrow}
-          </p>
-          <h2 className="text-3xl sm:text-4xl md:text-5xl font-serif font-bold text-[#0F1F3D] tracking-tight">
-            {MEDIA_AND_WRITING_SECTION.title}
-          </h2>
-          <div className="w-16 h-0.5 bg-[#C9A24B] mx-auto my-3" />
-          <p className="text-slate-600 font-sans text-sm sm:text-base leading-relaxed">
-            {MEDIA_AND_WRITING_SECTION.subtitle}
-          </p>
+        {/* Header Strip (Elena Vance Style) */}
+        <div className="flex flex-col md:flex-row md:items-end justify-between pb-10 border-b border-[#E5E4DF] gap-4 mb-12">
+          <div>
+            <span className="text-[11px] font-mono uppercase tracking-widest text-[#A3702C] font-semibold block mb-2">
+              [ LITERARY, BROADCAST &amp; EDITORIAL RECORD ]
+            </span>
+            <h2 className="text-3xl sm:text-4xl font-serif font-normal text-[#0D1322] tracking-tight">
+              Published Works, Media &amp; Cultural Monographs
+            </h2>
+          </div>
+
+          <span className="text-xs font-mono text-neutral-500 uppercase tracking-wider">
+            AUTHOR &amp; PROGRAMMER DOSSIER
+          </span>
         </div>
 
-        {/* Two-Column Cards Grid */}
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-8 mb-16">
-          {MEDIA_AND_WRITING_SECTION.cards.map((card, idx) => {
-            const IconComp = ICON_MAP[card.iconName] || BookOpen;
-            return (
-              <div
-                key={idx}
-                className="bg-[#FAF9F5] border border-slate-200/80 hover:border-[#C9A24B] rounded-3xl p-8 flex flex-col justify-between transition-all duration-300 hover:shadow-xl group"
-              >
-                <div>
-                  <div className="flex items-center justify-between mb-6">
-                    <div className="w-12 h-12 rounded-2xl bg-white border border-[#C9A24B]/30 text-[#A68335] flex items-center justify-center group-hover:scale-105 transition-transform shadow-sm">
-                      <IconComp className="w-6 h-6" />
-                    </div>
-                    <span className="text-[11px] font-bold uppercase tracking-wider px-3 py-1 rounded-full bg-white text-[#0F1F3D] border border-slate-200">
-                      {card.category}
-                    </span>
-                  </div>
-
-                  <h3 className="text-xl sm:text-2xl font-serif font-bold text-[#0F1F3D] mb-3">
-                    {card.title}
-                  </h3>
-
-                  <p className="text-slate-600 font-sans text-sm leading-relaxed">
-                    {card.description}
-                  </p>
+        {/* 3 White Cards Grid */}
+        <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
+          {publications.map((item, idx) => (
+            <div
+              key={idx}
+              className="bg-white border border-[#E5E4DF] p-8 flex flex-col justify-between shadow-xs hover:border-[#A3702C] transition-colors group"
+            >
+              <div>
+                {/* Top Category Tag Row */}
+                <div className="flex items-center justify-between pb-4 border-b border-[#F0EFEA] mb-6 text-[10px] font-mono uppercase tracking-widest">
+                  <span className="text-[#A3702C] font-semibold">{item.category}</span>
+                  <span className="text-neutral-400">{item.badge}</span>
                 </div>
 
-                <div className="mt-6 pt-4 border-t border-slate-200/60 flex items-center gap-2 text-xs font-semibold text-[#A68335]">
-                  <Sparkles className="w-3.5 h-3.5" />
-                  <span>Documented Cultural Contribution</span>
+                {/* Title */}
+                <h3 className="font-serif text-2xl font-normal text-[#0D1322] mb-4 leading-snug group-hover:text-[#A3702C] transition-colors">
+                  {item.title}
+                </h3>
+
+                {/* Description */}
+                <p className="text-sm text-neutral-600 font-sans leading-relaxed mb-6 font-light">
+                  {item.description}
+                </p>
+              </div>
+
+              {/* Bottom Metadata & Expand */}
+              <div className="pt-6 border-t border-[#F0EFEA] space-y-3">
+                <span className="text-[10px] font-mono text-neutral-400 uppercase tracking-wider block">
+                  {item.publication}
+                </span>
+                <div className="flex items-center justify-between text-xs font-mono uppercase tracking-wider text-[#0D1322] pt-2 border-t border-neutral-100">
+                  <span className="text-[11px]">{item.action}</span>
+                  <ArrowDown className="w-3.5 h-3.5 text-[#A3702C]" />
                 </div>
               </div>
-            );
-          })}
-        </div>
 
-        {/* Featured Quote Block */}
-        <div className="relative rounded-3xl bg-gradient-to-r from-[#0F1F3D] via-[#14284d] to-[#0F1F3D] p-8 sm:p-12 text-center text-[#FAF9F5] border border-[#C9A24B]/40 shadow-2xl overflow-hidden">
-          {/* Subtle gold line accents */}
-          <div className="absolute top-0 left-0 right-0 h-1 bg-gradient-to-r from-transparent via-[#C9A24B] to-transparent" />
-          
-          <div className="max-w-2xl mx-auto space-y-4">
-            <span className="text-xs uppercase tracking-widest font-semibold text-[#C9A24B]">
-              Personal Philosophy
-            </span>
-            <p className="font-serif text-2xl sm:text-3xl md:text-4xl italic font-bold text-[#FAF9F5] leading-snug">
-              "{MEDIA_AND_WRITING_SECTION.quoteBlock.quote}"
-            </p>
-            <div className="pt-2">
-              <p className="font-sans font-semibold text-sm text-[#C9A24B]">
-                {MEDIA_AND_WRITING_SECTION.quoteBlock.author}
-              </p>
-              <p className="text-xs text-slate-400 mt-0.5">
-                {MEDIA_AND_WRITING_SECTION.quoteBlock.tagline}
-              </p>
             </div>
-          </div>
+          ))}
         </div>
 
       </div>

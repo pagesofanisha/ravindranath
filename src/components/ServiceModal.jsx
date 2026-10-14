@@ -1,13 +1,13 @@
 import React from 'react';
-import { X, CheckCircle, ArrowRight, ShieldCheck } from 'lucide-react';
+import { X, Check, ArrowUpRight } from 'lucide-react';
 
 export default function ServiceModal({ service, onClose, onSelectForContact }) {
   if (!service) return null;
 
   return (
-    <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-[#0A1428]/80 backdrop-blur-sm animate-in fade-in duration-200">
+    <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-[#0D1322]/70 backdrop-blur-xs animate-in fade-in duration-150">
       <div
-        className="relative w-full max-w-lg bg-white rounded-3xl p-6 sm:p-8 shadow-2xl border border-slate-200 text-slate-800"
+        className="relative w-full max-w-lg bg-white border border-[#E5E4DF] p-6 sm:p-8 shadow-2xl text-[#1A1A1A]"
         role="dialog"
         aria-modal="true"
       >
@@ -15,45 +15,44 @@ export default function ServiceModal({ service, onClose, onSelectForContact }) {
         <button
           type="button"
           onClick={onClose}
-          className="absolute top-5 right-5 p-2 rounded-full bg-slate-100 hover:bg-slate-200 text-slate-600 transition-colors"
+          className="absolute top-5 right-5 p-1.5 border border-[#E5E4DF] hover:bg-[#F8F8F6] text-neutral-500 hover:text-[#0D1322] transition-colors"
           aria-label="Close modal"
         >
-          <X className="w-5 h-5" />
+          <X className="w-4 h-4" />
         </button>
 
         {/* Modal content */}
         <div className="space-y-4">
-          <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-[#FAF9F5] border border-[#C9A24B]/30 text-xs font-semibold text-[#A68335]">
-            <ShieldCheck className="w-4 h-4 text-[#C9A24B]" />
-            <span>Service Scope</span>
+          <div className="inline-flex items-center gap-2 text-xs font-mono uppercase tracking-widest text-[#A3702C] font-semibold">
+            <span>[ PRACTICE MANDATE SPECIFICATION ]</span>
           </div>
 
-          <h3 className="text-2xl font-serif font-bold text-[#0F1F3D]">
+          <h3 className="text-2xl font-serif font-normal text-[#0D1322]">
             {service.title}
           </h3>
 
-          <div className="w-12 h-0.5 bg-[#C9A24B]" />
+          <div className="w-12 h-0.5 bg-[#A3702C]" />
 
-          <p className="text-slate-600 font-sans text-sm sm:text-base leading-relaxed">
+          <p className="text-neutral-700 font-sans text-sm leading-relaxed font-light">
             {service.fullDesc}
           </p>
 
-          <div className="bg-[#FAF9F5] p-4 rounded-2xl border border-slate-200 space-y-2">
-            <h4 className="text-xs font-bold uppercase tracking-wider text-[#0F1F3D]">
-              Key Service Capabilities:
+          <div className="bg-[#F8F8F6] p-4 border border-[#E5E4DF] space-y-2">
+            <h4 className="text-[11px] font-mono font-bold uppercase tracking-wider text-[#0D1322]">
+              Fiduciary Deliverables:
             </h4>
-            <div className="space-y-1.5 text-xs text-slate-700">
+            <div className="space-y-1.5 text-xs font-mono text-neutral-700">
               <div className="flex items-center gap-2">
-                <CheckCircle className="w-3.5 h-3.5 text-[#C9A24B]" />
-                <span>Expert documentation and claim loss assessment</span>
+                <Check className="w-3.5 h-3.5 text-[#A3702C]" />
+                <span>Rigorous loss computation and accredited survey audit</span>
               </div>
               <div className="flex items-center gap-2">
-                <CheckCircle className="w-3.5 h-3.5 text-[#C9A24B]" />
-                <span>Direct negotiation with insurance authorities & TPAs</span>
+                <Check className="w-3.5 h-3.5 text-[#A3702C]" />
+                <span>Executive dispute negotiation between insurers, TPAs &amp; hospitals</span>
               </div>
               <div className="flex items-center gap-2">
-                <CheckCircle className="w-3.5 h-3.5 text-[#C9A24B]" />
-                <span>Transparent resolution compliant with Indian insurance norms</span>
+                <Check className="w-3.5 h-3.5 text-[#A3702C]" />
+                <span>Direct claimant advocacy cutting across corporate tiers</span>
               </div>
             </div>
           </div>
@@ -65,17 +64,17 @@ export default function ServiceModal({ service, onClose, onSelectForContact }) {
                 onSelectForContact(service.title);
                 onClose();
               }}
-              className="w-full inline-flex items-center justify-center gap-2 px-6 py-3.5 rounded-full text-sm font-semibold bg-[#0F1F3D] text-[#FAF9F5] hover:bg-[#182E56] border border-[#C9A24B]/40 transition-colors"
+              className="w-full inline-flex items-center justify-center gap-2 py-3.5 bg-[#0D1322] hover:bg-[#162038] text-white text-xs font-mono uppercase font-semibold tracking-wider transition-colors"
             >
-              <span>Consult On This Service</span>
-              <ArrowRight className="w-4 h-4 text-[#C9A24B]" />
+              <span>Inquire On This Mandate</span>
+              <ArrowUpRight className="w-3.5 h-3.5 text-[#A3702C]" />
             </button>
             <button
               type="button"
               onClick={onClose}
-              className="w-full sm:w-auto px-6 py-3.5 rounded-full text-sm font-medium text-slate-600 hover:bg-slate-100 transition-colors"
+              className="w-full sm:w-auto px-5 py-3.5 border border-[#E5E4DF] hover:bg-[#F8F8F6] text-xs font-mono uppercase text-neutral-600 transition-colors"
             >
-              Close
+              Dismiss
             </button>
           </div>
         </div>
